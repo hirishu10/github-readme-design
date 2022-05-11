@@ -36,12 +36,12 @@ import {
 } from "@hirishu10/simple-date-time";
 //
 function Personalpagefortesting() {
-  // const toDate = getCustomDate();
-  // const shortDay = getCustomDayNameShort();
-  // const timestamp = getCustomFullDateAndTimeWithAmPmIncludingSeconds();
-  // // const [timestampwithSeconds, setTimestampwithSeconds] = useState("timestamp");
-  // const runnableClock = getCustomFullDateAndTimeWithAmPmIncludingSeconds();
-  // const [getDateTime, setDateTime] = useState("Date-Time");
+  const toDate = getCustomDate();
+  const shortDay = getCustomDayNameShort();
+  const timestamp = getCustomFullDateAndTimeWithAmPmIncludingSeconds();
+  // const [timestampwithSeconds, setTimestampwithSeconds] = useState("timestamp");
+  const runnableClock = getCustomFullDateAndTimeWithAmPmIncludingSeconds();
+  const [getDateTime, setDateTime] = useState("Date-Time");
 
   const arr = [
     {
@@ -261,35 +261,95 @@ function Personalpagefortesting() {
     updated_at: "2022-04-14T06:45:23Z",
   };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setDateTime(runnableClock);
-  //   }, 1000);
-  // }, [runnableClock]);
+  useEffect(() => {
+    setTimeout(() => {
+      setDateTime(runnableClock);
+    }, 1000);
+  }, [runnableClock]);
 
   return (
-    <div
-      style={
-        {
-          // display: "flex",
-          // flexDirection: "column",
-          // justifyContent: "center",
-          // alignItems: "center",
-          // marginTop: 100,
-          // marginBottom: 100,
-        }
-      }
+    <svg
+      width="800"
+      height="200"
+      // viewBox="0 0 256 256"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{
+        border: "1px solid silver",
+      }}
     >
-      <Head>
-        <title>Test</title>
-        <meta name="test" content="testing page" />
-        {/* <link rel="icon" href="/rishufavicon.ico" /> */}
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@500&display=swap"
+        rel="stylesheet"
+      ></link>
+      <g className={sCode.groupFirst}>
+        <rect
+          width="100%"
+          height="40%"
+          style={{
+            fill: "lightgreen", //rgb(0,0,255)
+            strokeWidth: 1,
+            // stroke: "black", //rgb(0,0,0)
+          }}
+        />
+        <text
+          className={sCode.textLayout}
+          x="10"
+          y="50"
+          textAnchor="start"
+          // font-family="Poppins"
+          fontSize={30}
+        >
+          {testGit?.name}
+        </text>
+        <text
+          className={sCode.textLayout}
+          x="500"
+          y="50"
+          textAnchor="start"
+          // font-family="Poppins"
+          fontSize={18}
+        >
+          {getDateTime}
+        </text>
+        {/* <text
+          className={sCode.textLayout}
+          x="600"
+          y="50"
+          textAnchor="start"
+          // font-family="Poppins"
+          fontSize={30}
+        >
+          {timestampwithSeconds}
+        </text>
+        <text
+          className={sCode.textLayout}
+          x="650"
+          y="50"
+          textAnchor="start"
+          // font-family="Poppins"
+          fontSize={30}
+        >
+          {shortDay}
+        </text> */}
+      </g>
+    </svg>
+    // <>
+    //   <Head>
+    //     <title>Test</title>
+    //     <meta name="test" content="testing page" />
+    //     {/* <link rel="icon" href="/rishufavicon.ico" /> */}
+    //     <link rel="icon" href="/favicon.ico" />
+    //   </Head>
 
-      <TestCard />
+    //   <TestCard />
 
-      {/* <svg
+    // </>
+  );
+}
+
+export default Personalpagefortesting;
+{
+  /* <svg
         width="800"
         height="200"
         // viewBox="0 0 256 256"
@@ -353,9 +413,5 @@ function Personalpagefortesting() {
             {shortDay}
           </text>
         </g>
-      </svg> */}
-    </div>
-  );
+      </svg> */
 }
-
-export default Personalpagefortesting;

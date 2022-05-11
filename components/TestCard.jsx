@@ -70,66 +70,54 @@ const TestCard = () => {
   }, [runnableClock]);
 
   return (
-    <div
-      style={
-        {
-          // display: "flex",
-          // flexDirection: "column",
-          // justifyContent: "center",
-          // alignItems: "center",
-          // marginTop: 100,
-          // marginBottom: 100,
-        }
-      }
+    <svg
+      width="800"
+      height="200"
+      // viewBox="0 0 256 256"
+      xmlns="http://www.w3.org/2000/svg"
+      stroke="silver"
+      // style={{
+      //   border: "1px solid silver",
+      // }}
+      color="red"
     >
-      <svg
-        width="800"
-        height="200"
-        // viewBox="0 0 256 256"
-        xmlns="http://www.w3.org/2000/svg"
-        stroke="silver"
-        // style={{
-        //   border: "1px solid silver",
-        // }}
-        color="red"
-      >
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@500&display=swap"
-          rel="stylesheet"
-        ></link>
-        <g className={sCode.groupFirst}>
-          <rect
-            width="100%"
-            height="40%"
-            style={{
-              fill: "lightgreen", //rgb(0,0,255)
-              strokeWidth: 1,
-              // stroke: "black", //rgb(0,0,0)
-            }}
-          />
-          <text
-            className={sCode.textLayout}
-            x="10"
-            y="50"
-            textAnchor="start"
-            // font-family="Poppins"
-            fontSize={30}
-          >
-            {testGit?.name}
-          </text>
-          {/* Test */}
-          <text
-            className={sCode.textLayout}
-            x="500"
-            y="50"
-            textAnchor="start"
-            // font-family="Poppins"
-            fontSize={18}
-          >
-            {getDateTime}
-          </text>
-          {/* Date */}
-          {/* <text
+      <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@500&display=swap"
+        rel="stylesheet"
+      ></link>
+      <g className={sCode.groupFirst}>
+        <rect
+          width="100%"
+          height="40%"
+          style={{
+            fill: "lightgreen", //rgb(0,0,255)
+            strokeWidth: 1,
+            // stroke: "black", //rgb(0,0,0)
+          }}
+        />
+        <text
+          className={sCode.textLayout}
+          x="10"
+          y="50"
+          textAnchor="start"
+          // font-family="Poppins"
+          fontSize={30}
+        >
+          {testGit?.name}
+        </text>
+        {/* Test */}
+        <text
+          className={sCode.textLayout}
+          x="500"
+          y="50"
+          textAnchor="start"
+          // font-family="Poppins"
+          fontSize={18}
+        >
+          {getDateTime}
+        </text>
+        {/* Date */}
+        {/* <text
             className={sCode.textLayout}
             x="600"
             y="50"
@@ -139,8 +127,8 @@ const TestCard = () => {
           >
             {timestampwithSeconds}
           </text> */}
-          {/* Day */}
-          {/* <text
+        {/* Day */}
+        {/* <text
             className={sCode.textLayout}
             x="650"
             y="50"
@@ -150,10 +138,8 @@ const TestCard = () => {
           >
             {shortDay}
           </text> */}
-        </g>
-      </svg>
-      {/* <TestCard /> */}
-    </div>
+      </g>
+    </svg>
   );
 };
 export default TestCard;
