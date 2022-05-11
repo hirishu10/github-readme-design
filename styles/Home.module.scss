@@ -1,0 +1,122 @@
+.container {
+  // padding: 0 2rem;
+}
+.navHeader {
+  width: 100%;
+  height: 100px;
+  background-color: black;
+  color: white;
+  display: flex;
+  font-size: 2em;
+  // flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.outerContainer {
+  min-height: 70vh;
+  padding: 4rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  // background-color: purple;
+}
+//
+.errorContainer {
+  width: 300px;
+  height: 50px;
+  background-color: firebrick;
+  color: white;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+
+  .errorContainerClose {
+    margin-left: 50px;
+    cursor: pointer;
+  }
+}
+//
+.succContainer {
+  width: 300px;
+  height: 50px;
+  background-color: seagreen;
+  color: white;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+
+  .succContainerClose {
+    margin-left: 50px;
+    cursor: pointer;
+  }
+}
+//
+.loadContainer {
+  width: 300px;
+  height: 50px;
+  // background-color: firebrick;
+  // color: white;
+  font-size: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
+//
+.repoBoxContainer {
+  width: 200px;
+  height: 80px;
+  background-color: red;
+
+  .repoBoxContainerLabel {
+    width: 100%;
+    height: 50%;
+    // background-color: green;
+    background-color: black;
+    color: white;
+    display: flex;
+    font-size: 1em;
+    justify-content: center;
+    align-items: center;
+  }
+  .repoBoxContainerInput {
+    width: 100%;
+    height: 50%;
+    background-color: darkblue;
+
+    .repoBoxInput {
+      width: 100%;
+      height: 100%;
+      outline-style: none;
+      padding: 5px;
+    }
+  }
+}
+
+//
+.footer {
+  display: flex;
+  flex: 1;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+.logo {
+  // height: 1em;
+  margin-left: 0.5rem;
+}
