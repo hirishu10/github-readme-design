@@ -9,5 +9,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  // res.setHeader("Content-Type", "image/svg+xml")
+  // res.write("<h1>Hello World</h1>")
   res.status(200).json({ name: 'John Doe' })
 }
