@@ -250,19 +250,31 @@ function Personalpagefortesting() {
         {/* <link rel="icon" href="/rishufavicon.ico" /> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      {/* <TestCard /> */}
       <svg
         width="1280"
         height="200"
         viewBox="0 0 1280 200"
+        className={sCode.outer}
         xmlns="http://www.w3.org/2000/svg"
-        style={{ boxShadow: "0px 0px 5px 1px #acacac" }}
+        style={{
+          // boxShadow: "0px 0px 5px 1px #acacac",
+          // border: "1px solid silver",
+        }}
       >
         <link
           href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@500&display=swap"
           rel="stylesheet"
         ></link>
-        <g>
-          <rect width="100%" height="100%" fill="#ffffff" strokeWidth="1" />
+        <g className={sCode.groupFirst}>
+          <rect
+            width="100%"
+            height="100%"
+            style={{
+              fill: "#ffffff",
+              strokeWidth: 1,
+            }}
+          />
           <text
             className={sCode.textLayout}
             x="20"
@@ -272,7 +284,64 @@ function Personalpagefortesting() {
           >
             {testGit?.name}
           </text>
+          <text
+            className={sCode.textLayout}
+            x="20"
+            y="100"
+            textAnchor="start"
+            fontSize={20}
+          >
+            {`👨🏻‍💻 ${title}`}
+          </text>
+          <text
+            className={sCode.textLayout}
+            x="20"
+            y="130"
+            textAnchor="start"
+            fontSize={20}
+          >
+            {`📧 ${testGit?.email}`}
+          </text>
+          <text
+            className={sCode.textLayout}
+            x="1050"
+            y="80"
+            textAnchor="start"
+            fontSize={60}
+            fill={"#f82020"}
+          >
+            {toDate}
+          </text>
+          <text
+            className={sCode.textLayout}
+            x="1110"
+            y="80"
+            textAnchor="start"
+            fontSize={40}
+          >
+            {shortMonth}
+          </text>
+          <text
+            className={sCode.textLayout}
+            x="1050"
+            y="150"
+            textAnchor="start"
+            fontSize={70}
+          >
+            {year}
+          </text>
         </g>
+        {/* footer */}
+        <text
+          className={sCode.textLayout}
+          x="1150"
+          y="190"
+          textAnchor="start"
+          fontSize={10}
+          fill={"#e3e3e3"}
+        >
+          {"Github-Readme-Design"}
+        </text>
       </svg>
     </>
   );
@@ -293,95 +362,3 @@ export default Personalpagefortesting;
 //     }}
 //   />
 // </svg>
-
-// <svg
-//         width="1280"
-//         height="200"
-//         viewBox="0 0 1280 200"
-//         className={sCode.outer}
-//         xmlns="http://www.w3.org/2000/svg"
-//         style={{
-//           boxShadow: "0px 0px 5px 1px #acacac",
-//         }}
-//       >
-//         <link
-//           href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@500&display=swap"
-//           rel="stylesheet"
-//         ></link>
-//         <g className={sCode.groupFirst}>
-//           <rect
-//             width="100%"
-//             height="100%"
-//             style={{
-//               fill: "#ffffff",
-//               strokeWidth: 1,
-//             }}
-//           />
-//           <text
-//             className={sCode.textLayout}
-//             x="20"
-//             y="70"
-//             textAnchor="start"
-//             fontSize={50}
-//           >
-//             {testGit?.name}
-//           </text>
-//           <text
-//             className={sCode.textLayout}
-//             x="20"
-//             y="100"
-//             textAnchor="start"
-//             fontSize={20}
-//           >
-//             {`👨🏻‍💻 ${title}`}
-//           </text>
-//           <text
-//             className={sCode.textLayout}
-//             x="20"
-//             y="130"
-//             textAnchor="start"
-//             fontSize={20}
-//           >
-//             {`📧 ${testGit?.email}`}
-//           </text>
-//           <text
-//             className={sCode.textLayout}
-//             x="1050"
-//             y="80"
-//             textAnchor="start"
-//             fontSize={60}
-//             fill={"#f82020"}
-//           >
-//             {toDate}
-//           </text>
-//           <text
-//             className={sCode.textLayout}
-//             x="1110"
-//             y="80"
-//             textAnchor="start"
-//             fontSize={40}
-//           >
-//             {shortMonth}
-//           </text>
-//           <text
-//             className={sCode.textLayout}
-//             x="1050"
-//             y="150"
-//             textAnchor="start"
-//             fontSize={70}
-//           >
-//             {year}
-//           </text>
-//         </g>
-//         {/* footer */}
-//         <text
-//           className={sCode.textLayout}
-//           x="1150"
-//           y="190"
-//           textAnchor="start"
-//           fontSize={10}
-//           fill={"#e3e3e3"}
-//         >
-//           {"Github-Readme-Design"}
-//         </text>
-//       </svg>
