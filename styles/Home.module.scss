@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@500&display=swap");
+
 .container {
   // padding: 0 2rem;
 }
@@ -11,10 +13,12 @@
   // flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: Poppins, sans-serif;
+  box-shadow: 0px 0px 5px 1px #ff0303;
 }
 .outerContainer {
   min-height: 70vh;
-  padding: 4rem 0;
+  padding: 2rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -28,7 +32,7 @@
   height: 50px;
   background-color: firebrick;
   color: white;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,7 +49,7 @@
   height: 50px;
   background-color: seagreen;
   color: white;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,29 +77,76 @@
 .repoBoxContainer {
   width: 200px;
   height: 80px;
-  background-color: red;
+  // border: 1px solid silver;
+  // box-shadow: 0px 0px 5px 1px #dcdcdc;
+  box-shadow: 0px 0px 5px 1px #acacac;
+  font-family: Poppins, sans-serif;
 
   .repoBoxContainerLabel {
     width: 100%;
     height: 50%;
     // background-color: green;
-    background-color: black;
+    // background-color: black;
+    background-color: #333;
     color: white;
+    // font-size: 1em;
     display: flex;
-    font-size: 1em;
-    justify-content: center;
-    align-items: center;
+    // justify-content: center;
+    // align-items: center;
+
+    .repoBoxContainerLabelIcon {
+      width: 32%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // background-color: rgb(255, 0, 0);
+      overflow: hidden;
+    }
+    .repoBoxContainerLabelText {
+      width: 68%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      // background-color: rgb(0, 255, 68);
+    }
   }
   .repoBoxContainerInput {
     width: 100%;
     height: 50%;
-    background-color: darkblue;
+    // background-color: darkblue;
+    // font-size: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .repoBoxInput {
-      width: 100%;
+      width: 80%;
       height: 100%;
+      border: none;
       outline-style: none;
       padding: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .repoBoxButton {
+      width: 20%;
+      height: 100%;
+      border: none;
+      outline-style: none;
+      // padding: 2px;
+      cursor: pointer;
+      display: flex;
+      // font-size: 1em;
+      background-color: white;
+      color: #bcbcbc;
+      // color: black;
+      justify-content: center;
+      align-items: center;
+      // font-weight: bolder;
     }
   }
 }
@@ -119,4 +170,16 @@
 .logo {
   // height: 1em;
   margin-left: 0.5rem;
+}
+
+// ****************************************************************
+
+.desingCard {
+  width: 100%;
+  height: 270px;
+  // background-color: red;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
