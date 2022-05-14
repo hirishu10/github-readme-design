@@ -253,20 +253,23 @@ function Personalpagefortesting() {
       {/* <TestCard /> */}
       <svg
         width={1280}
-        height={150}
+        height={200}
         viewBox="0 0 1280 150"
         xmlns="http://www.w3.org/2000/svg"
         enableBackground="new 0 0 1280 150"
         xmlSpace="preserve"
+        style={{
+          border: "1px solid silver",
+          margin: "50px 0px 0px 50px",
+        }}
       >
         {/*  */}
         <image
           id="image0"
-          width="1120"
-          height="145"
+          width="1280"
+          height="200"
           x="0"
-          y="0"
-          opacity="0.2"
+          y="-55"
           href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAACWCAYAAACB4yUOAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
 AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAA
 CXBIWXMAAA7EAAAOxAGVKw4bAACAAElEQVR42uz9aXcbOdamjV4AYuKoyZadc5azq57u1es95/S3
@@ -1170,31 +1173,43 @@ YEVFRUVFRUVFRUVFRUVFRUVFxQxTCYAVFRUVFRUVFRUVFRUVFRUVFRUzzP8P91VLh4eyJxMAAAAl
 dEVYdGRhdGU6Y3JlYXRlADIwMjItMDUtMTRUMDg6NTE6MzkrMDM6MDCC5VzDAAAAJXRFWHRkYXRl
 Om1vZGlmeQAyMDIyLTA1LTE0VDA4OjUxOjM5KzAzOjAw87jkfwAAAABJRU5ErkJggg=="
         />
+        {/*  */}
+        <g>
+          <rect
+            x={0}
+            y={115}
+            // y={135}
+            width={1280}
+            height={15}
+            style={{ fill: "#333" }}
+          ></rect>
+          <text
+            x={1180}
+            y={125}
+            textAnchor="start"
+            fontSize={8}
+            fill={"silver"}
+            fontFamily={"system-ui,sans-serif"}
+          >
+            {"Github-Readme-Design"}
+          </text>
+        </g>
 
         {/*  */}
         <g>
           <rect
+            x="0"
+            y="130"
             width={1280}
-            height={150}
+            height={45}
             // fill="red"
             fill="none"
           />
           <text
-            x="10"
-            y="50"
+            x="1000"
+            y="165"
             textAnchor="start"
-            font-size="50"
-            fontFamily={"system-ui,sans-serif"}
-            fontWeight={"medium"}
-            fill="#33312a"
-          >
-            Rishu Chowdhary
-          </text>
-          <text
-            x={1100}
-            y={60}
-            textAnchor="start"
-            fontSize={50}
+            fontSize="40"
             fill={"#f82020"}
             // fill={"white"}
             fontFamily={"system-ui,sans-serif"}
@@ -1203,10 +1218,10 @@ Om1vZGlmeQAyMDIyLTA1LTE0VDA4OjUxOjM5KzAzOjAw87jkfwAAAABJRU5ErkJggg=="
             28
           </text>
           <text
-            x={1162}
-            y={60}
+            x="1055"
+            y="165"
             textAnchor="start"
-            fontSize={35}
+            fontSize="40"
             // fill={"white"}
             fontFamily={"system-ui,sans-serif"}
             fontWeight={"medium"}
@@ -1214,10 +1229,10 @@ Om1vZGlmeQAyMDIyLTA1LTE0VDA4OjUxOjM5KzAzOjAw87jkfwAAAABJRU5ErkJggg=="
             May
           </text>
           <text
-            x={1100}
-            y={110}
+            x="1130"
+            y="165"
             textAnchor="start"
-            fontSize={55}
+            fontSize="40"
             // fill={"white"}
             fontFamily={"system-ui,sans-serif"}
             // fontWeight={"light"}
@@ -1228,25 +1243,16 @@ Om1vZGlmeQAyMDIyLTA1LTE0VDA4OjUxOjM5KzAzOjAw87jkfwAAAABJRU5ErkJggg=="
         {/*  */}
 
         {/* footer */}
-        <g>
+
+        {/* <g>
           <rect
             x={0}
-            y={135}
+            y={160}
             width={1280}
-            height={15}
+            height={5}
             style={{ fill: "#333" }}
           ></rect>
-          <text
-            x={1180}
-            y={145}
-            textAnchor="start"
-            fontSize={8}
-            fill={"silver"}
-            fontFamily={"system-ui,sans-serif"}
-          >
-            {"Github-Readme-Design"}
-          </text>
-        </g>
+        </g> */}
       </svg>
     </>
   );

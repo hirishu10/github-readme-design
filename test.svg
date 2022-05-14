@@ -1,14 +1,14 @@
 
-    <svg width="1280" height="150" viewBox="0 0 1280 150" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 1280 150" xml:space="preserve">
+    <svg width="1280" height="200" viewBox="0 0 1280 150" xmlns="http://www.w3.org/2000/svg" enableBackground="new 0 0 1280 150" xmlSpace="preserve" >
         <g>
           <rect width="1280" height="150" fill="none" />
 
           <image
           id="image0"
-          width="1280" 
-          height="140"
+          width="1280"
+          height="200"
           x="0"
-          y="0"
+          y="-55"
           href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAACWCAYAAACB4yUOAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
 AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAA
 CXBIWXMAAA7EAAAOxAGVKw4bAACAAElEQVR42uz9aXcbOdamjV4AYuKoyZadc5azq57u1es95/S3
@@ -912,13 +912,28 @@ YEVFRUVFRUVFRUVFRUVFRUVFxQxTCYAVFRUVFRUVFRUVFRUVFRUVFRUzzP8P91VLh4eyJxMAAAAl
 dEVYdGRhdGU6Y3JlYXRlADIwMjItMDUtMTRUMDg6NTE6MzkrMDM6MDCC5VzDAAAAJXRFWHRkYXRl
 Om1vZGlmeQAyMDIyLTA1LTE0VDA4OjUxOjM5KzAzOjAw87jkfwAAAABJRU5ErkJggg=="
         />
-
-   
         </g>
         <g>
-          <rect x="0" y="135" width="1280" height="15" style="fill:#333;"
-          ></rect>
-          <text x="1180" y="145" text-anchor="start" font-size="8" fill="silver" font-family="system-ui,sans-serif"
-          >Github-Readme-Design</text>
-        </g>
+        <rect x="0" y="115" width="1280" height="15" style="fill:#333;" />
+
+        <text x="1180" y="125" text-anchor="start" font-size="8" fill="silver" font-family="system-ui,sans-serif"
+        >Github-Readme-Design</text>
+      </g>
+
+      <g>
+      <rect x="0" y="130" width="1280" height="45" fill="none"/>
+      <text x="1000" y="165" text-anchor="start" font-size="40" fill="#f82020" font-family="system-ui,sans-serif" font-weight="bolder"
+      >
+        28
+      </text>
+      <text x="1055" y="165" text-anchor="start" font-size="40" font-family="system-ui,sans-serif" font-weight="medium"
+      >
+        May
+      </text>
+      <text x="1130" y="165" text-anchor="start" font-size="40" font-family="system-ui,sans-serif"
+      >
+        2022
+      </text>
+    </g>
+
 </svg>

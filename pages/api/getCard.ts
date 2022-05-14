@@ -59,16 +59,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     // '<svg width="200" height="200" fill="red" xmlns="http://www.w3.org/2000/svg"><path d="M141.04 16c-11.04 0-19 7.2-19 18s8.96 18 20 18c6.67 0 12.55-2.64 16.19-7.09l-7.65-4.42c-2.02 2.21-5.09 3.5-8.54 3.5-4.79 0-8.86-2.5-10.37-6.5h28.02c.22-1.12.35-2.28.35-3.5 0-10.79-7.96-17.99-19-17.99zm-9.46 14.5c1.25-3.99 4.67-6.5 9.45-6.5 4.79 0 8.21 2.51 9.45 6.5h-18.9zM248.72 16c-11.04 0-19 7.2-19 18s8.96 18 20 18c6.67 0 12.55-2.64 16.19-7.09l-7.65-4.42c-2.02 2.21-5.09 3.5-8.54 3.5-4.79 0-8.86-2.5-10.37-6.5h28.02c.22-1.12.35-2.28.35-3.5 0-10.79-7.96-17.99-19-17.99zm-9.45 14.5c1.25-3.99 4.67-6.5 9.45-6.5 4.79 0 8.21 2.51 9.45 6.5h-18.9zM200.24 34c0 6 3.92 10 10 10 4.12 0 7.21-1.87 8.8-4.92l7.68 4.43c-3.18 5.3-9.14 8.49-16.48 8.49-11.05 0-19-7.2-19-18s7.96-18 19-18c7.34 0 13.29 3.19 16.48 8.49l-7.68 4.43c-1.59-3.05-4.68-4.92-8.8-4.92-6.07 0-10 4-10 10zm82.48-29v46h-9V5h9zM36.95 0L73.9 64H0L36.95 0zm92.38 5l-27.71 48L73.91 5H84.3l17.32 30 17.32-30h10.39zm58.91 12v9.69c-1-.29-2.06-.49-3.2-.49-5.81 0-10 4-10 10V51h-9V17h9v9.2c0-5.08 5.91-9.2 13.2-9.2z" fill="#000"/>';
     // `<svg width="1280" height="200" viewBox="0 0 1280 200" xmlns="http://www.w3.org/2000/svg" style="box-shadow: 0 0 5px 10px rgba(0,0,0,.12);">
     `
-    <svg width="1280" height="150" viewBox="0 0 1280 150" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 1280 150" xml:space="preserve">
+    <svg width="1280" height="200" viewBox="0 0 1280 150" xmlns="http://www.w3.org/2000/svg" enableBackground="new 0 0 1280 150" xmlSpace="preserve" >
         <g>
           <rect width="1280" height="150" fill="none" />
 
           <image
           id="image0"
-          width="1280" 
-          height="140"
+          width="1280"
+          height="200"
           x="0"
-          y="0"
+          y="-55"
           href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQAAAACWCAYAAACB4yUOAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
 AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAA
 CXBIWXMAAA7EAAAOxAGVKw4bAACAAElEQVR42uz9aXcbOdamjV4AYuKoyZadc5azq57u1es95/S3
@@ -974,16 +974,33 @@ Om1vZGlmeQAyMDIyLTA1LTE0VDA4OjUxOjM5KzAzOjAw87jkfwAAAABJRU5ErkJggg=="
         />
         </g>
         <g>
-          <rect x="0" y="135" width="1280" height="15" style="fill:#333;"
-          ></rect>
-          <text x="1180" y="145" text-anchor="start" font-size="8" fill="silver" font-family="system-ui,sans-serif"
-          >Github-Readme-Design</text>
-        </g>
+        <rect x="0" y="115" width="1280" height="15" style="fill:#333;" />
+
+        <text x="1180" y="125" text-anchor="start" font-size="8" fill="silver" font-family="system-ui,sans-serif"
+        >Github-Readme-Design</text>
+      </g>
+
+      <g>
+      <rect x="0" y="130" width="1280" height="45" fill="none"/>
+      <text x="1000" y="165" text-anchor="start" font-size="40" fill="#f82020" font-family="system-ui,sans-serif" font-weight="bolder"
+      >
+        28
+      </text>
+      <text x="1055" y="165" text-anchor="start" font-size="40" font-family="system-ui,sans-serif" font-weight="medium"
+      >
+        May
+      </text>
+      <text x="1130" y="165" text-anchor="start" font-size="40" font-family="system-ui,sans-serif"
+      >
+        2022
+      </text>
+    </g>
+
 </svg>
 `;
 
   //
-  // const body = `<text x="10" y="50" textAnchor="start" fontSize="30" >${req?.query?.name}</text>`;
+  // const body = `<text x="10" y="50" text-anchor="start" fontSize="30" >${req?.query?.name}</text>`;
   // const body = `<text x="10" y="50" textAnchor="start" fontSize="30" >${name}</text>`;
   // const end = "</svg>";
 
