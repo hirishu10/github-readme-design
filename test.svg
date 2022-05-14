@@ -1,22 +1,23 @@
 
-    <svg width="1280" height="200" viewBox="0 0 1280 200" xmlns="http://www.w3.org/2000/svg" style="font-family: Poppins; border: 1px solid silver;">
-    <style>
-    @import url("https://fonts.googleapis.com/css?family=Poppins:500,700,500sm");
-      .outer{
-        font-family: Poppins;
-        fill: none;
-      }
-    </style>
-    <g>
-      <rect width="1280" height="200" class="outer"/>
-      <text x="20" y="70" text-anchor="start" font-size="50">Rishu Chowdhary</text>
-      <text x="20" y="100" text-anchor="start" font-size="20">👨🏻‍💻 Software Developer</text>
-      <text x="20" y="130" text-anchor="start" font-size="20">📧 hi.10rishu@gmail.com</text>
-      <text x="1050" y="80" text-anchor="start" font-size="60" fill="#f82020">13</text>
-      <text x="1110" y="80" text-anchor="start" font-size="40">May</text>
-      <text x="1050" y="150" text-anchor="start" font-size="70">2022</text>
-    </g>
-    <g>
-    <text x="1150" y="190" text-anchor="start" font-size="10" fill="#e3e3e3" font-family="Poppins">Github-Readme-Design</text>
-    </g>
-    </svg>
+    <svg width="1280" height="150" viewBox="0 0 1280 150" xmlns="http://www.w3.org/2000/svg">
+        <g>
+          <rect width="1280" height="150" fill="none" />
+          <text x="1100" y="60" text-anchor="start" font-size="50" fill="#f82020" font-family="system-ui,sans-serif" font-weight="bolder">
+            14
+          </text>
+          <text x="1160" y="60" text-anchor="start" font-size="35" font-family="system-ui,sans-serif" font-weight="medium"
+          >
+            May
+          </text>
+          <text x="1100" y="110" text-anchor="start" font-size="60" font-family="system-ui,sans-serif"
+          >
+            2022
+          </text>
+        </g>
+        <g>
+          <rect x="0" y="135" width="1280" height="15" style="fill:#333;"
+          ></rect>
+          <text x="1180" y="145" text-anchor="start" font-size="8" fill="silver" font-family="system-ui,sans-serif"
+          >Github-Readme-Design</text>
+        </g>
+</svg>

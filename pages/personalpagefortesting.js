@@ -252,96 +252,74 @@ function Personalpagefortesting() {
       </Head>
       {/* <TestCard /> */}
       <svg
-        width="1280"
-        height="200"
-        viewBox="0 0 1280 200"
-        className={sCode.outer}
+        width={1280}
+        height={150}
+        viewBox="0 0 1280 150"
         xmlns="http://www.w3.org/2000/svg"
-        style={{
-          // boxShadow: "0px 0px 5px 1px #acacac",
-          // border: "1px solid silver",
-        }}
       >
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@500&display=swap"
-          rel="stylesheet"
-        ></link>
-        <g className={sCode.groupFirst}>
+        <g>
           <rect
-            width="100%"
-            height="100%"
-            style={{
-              fill: "#ffffff",
-              strokeWidth: 1,
-            }}
+            width={1280}
+            height={150}
+            // fill="red"
+            fill="none"
           />
           <text
-            className={sCode.textLayout}
-            x="20"
-            y="70"
+            x={1100}
+            y={60}
             textAnchor="start"
             fontSize={50}
+            fill={"#f82020"}
+            // fill={"white"}
+            fontFamily={"system-ui,sans-serif"}
+            fontWeight={"bolder"}
           >
-            {testGit?.name}
+            14
           </text>
           <text
-            className={sCode.textLayout}
-            x="20"
-            y="100"
+            x={1160}
+            y={60}
             textAnchor="start"
-            fontSize={20}
+            fontSize={35}
+            // fill={"white"}
+            fontFamily={"system-ui,sans-serif"}
+            fontWeight={"medium"}
           >
-            {`👨🏻‍💻 ${title}`}
+            May
           </text>
           <text
-            className={sCode.textLayout}
-            x="20"
-            y="130"
-            textAnchor="start"
-            fontSize={20}
-          >
-            {`📧 ${testGit?.email}`}
-          </text>
-          <text
-            className={sCode.textLayout}
-            x="1050"
-            y="80"
+            x={1100}
+            y={110}
             textAnchor="start"
             fontSize={60}
-            fill={"#f82020"}
+            // fill={"white"}
+            fontFamily={"system-ui,sans-serif"}
+            // fontWeight={"light"}
           >
-            {toDate}
-          </text>
-          <text
-            className={sCode.textLayout}
-            x="1110"
-            y="80"
-            textAnchor="start"
-            fontSize={40}
-          >
-            {shortMonth}
-          </text>
-          <text
-            className={sCode.textLayout}
-            x="1050"
-            y="150"
-            textAnchor="start"
-            fontSize={70}
-          >
-            {year}
+            2022
           </text>
         </g>
+        {/*  */}
         {/* footer */}
-        <text
-          className={sCode.textLayout}
-          x="1150"
-          y="190"
-          textAnchor="start"
-          fontSize={10}
-          fill={"#e3e3e3"}
-        >
-          {"Github-Readme-Design"}
-        </text>
+        <g>
+          <rect
+            x={0}
+            y={135}
+            width={1280}
+            height={15}
+            style={{ fill: "#333" }}
+          ></rect>
+          <text
+            x={1180}
+            y={145}
+            textAnchor="start"
+            fontSize={8}
+            fill={"silver"}
+            fontFamily={"system-ui,sans-serif"}
+          >
+            {"Github-Readme-Design"}
+          </text>
+        </g>
       </svg>
     </>
   );

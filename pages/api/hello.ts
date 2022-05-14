@@ -11,7 +11,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-// req.headers.name
+  // req.headers.name
   // console.log("process.cwd()", process?.cwd());
   // res.setHeader("Content-Type", "image/svg+xml")
   // res.write("<h1>Hello World</h1>")
