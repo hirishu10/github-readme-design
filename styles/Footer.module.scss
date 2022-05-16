@@ -1,0 +1,39 @@
+//
+.footer {
+  // display: flex;
+  // flex: 1;
+  // padding: 2rem 0;
+  // border-top: 1px solid #eaeaea;
+  // justify-content: center;
+  // align-items: center;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // flex-grow: 1;
+}
+.logo {
+  // height: 1em;
+  margin-left: 0.5rem;
+}
+
+// Media Query
+@media (max-width: 740px) {
+  .footer {
+    grid-template-columns: auto;
+  }
+  .footer a {
+    margin-top: 10px;
+  }
+  .navHeader {
+    font-size: 1.3em;
+  }
+}

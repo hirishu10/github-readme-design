@@ -15,6 +15,8 @@ import { convertCookieData } from "../utils/convertCookieData";
 import $ from "jquery";
 import router from "next/router";
 import AllCard from "../components/AllCard";
+import Footer from "../components/Footer";
+import CookieBanner from "../components/CookieBanner";
 
 const Home: NextPage = (data) => {
   // console.log("dataFromServer :>> ", data);
@@ -26,6 +28,7 @@ const Home: NextPage = (data) => {
   const [GITHUB_FLAG, setGithubFlag] = useState(false);
   const [COOKIE_CONFIG, setAutoCookie] = useState("");
   const [IMPORTANT_FLAG, setImportantValue] = useState(true);
+  const [COOKIE_BANNER, setCookieBanner] = useState(true);
   // const [cookieData, setCookieData] = useState(""); // This will for future release
 
   const testGit = {
@@ -180,10 +183,11 @@ const Home: NextPage = (data) => {
           setGithubFlag(true);
           setInputValue(item?.value);
           setImportantValue(false);
+          setCookieBanner(false);
         }
       }
     });
-  }, [inputValue, COOKIE_CONFIG, GITHUB_FLAG]);
+  }, [inputValue, COOKIE_CONFIG, GITHUB_FLAG, COOKIE_BANNER]);
 
   return (
     <div className={styles.container}>
@@ -341,44 +345,8 @@ const Home: NextPage = (data) => {
       {/*  */}
       {/* </div> */}
       {/*  */}
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {/* instant markdown previewer */}
-          Sponsored by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-        <a
-          href="https://github.com/hirishu10"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Desinged by Rishu Chowdhary{" "}
-          <span className={styles.logo}>
-            <Image
-              src="/rishufavicon.ico"
-              alt="Rishu Chowdhary"
-              width={30}
-              height={30}
-            />
-          </span>
-        </a>
-      </footer>
+      {COOKIE_BANNER ? <CookieBanner /> : null}
+      <Footer />
     </div>
   );
 };

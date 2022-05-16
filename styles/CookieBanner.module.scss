@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@500&display=swap");
+
+$hColors: #232930;
+$borderBottomForPreview: #d7dee5;
+
+.outerContainer {
+  width: 100%;
+  height: 80px;
+  //   background-color: red;
+  background-color: #f6f6f6;
+  //   color: white;
+  color: $hColors;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins, sans-serif;
+  transition: 0.3s;
+}
+.container {
+}
+
+.policy {
+  text-decoration: underline;
+  transition: 0.3s;
+  color: blue;
+}
+
+.policy:hover {
+  color: red;
+  transition: 0.3s;
+}
+
+.accept {
+  margin-left: 10px;
+  width: 100px;
+  //   height: 50px;
+  padding: 12px;
+  border: none;
+  border-radius: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #07f0a5;
+  //   transition: 0.3s;
+}
+.accept:hover {
+  //   background-color: red;
+  //   transition: 0.3s;
+  //   text-decoration: underline;
+}
