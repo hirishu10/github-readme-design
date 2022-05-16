@@ -13,13 +13,19 @@ import path from "path";
 import { convertCookieData } from "../utils/convertCookieData";
 //
 import $ from "jquery";
+import router from "next/router";
 import AllCard from "../components/AllCard";
 
 const Home: NextPage = (data) => {
+  // console.log("dataFromServer :>> ", data);
+
   const [errMesage, setErrMesage] = useState(false);
   const [succMessage, setSuccMessage] = useState(false);
   const [loadMessage, setLoadMessage] = useState("...");
   const [inputValue, setInputValue] = useState("");
+  const [GITHUB_FLAG, setGithubFlag] = useState(false);
+  const [COOKIE_CONFIG, setAutoCookie] = useState("");
+  const [IMPORTANT_FLAG, setImportantValue] = useState(true);
   // const [cookieData, setCookieData] = useState(""); // This will for future release
 
   const testGit = {
@@ -74,13 +80,111 @@ const Home: NextPage = (data) => {
   // }, [inputValue, cookieData]);
   //   // ::::::::::::::::::::::::::::::::::::: <== Future Release:::::::
 
+  // title={"Header Design Card"}
+  // backgroundImage={"/headLight.svg"}
+  // locked={true}
+  // // comingSoon={true}
+  const cardArray = [
+    {
+      title: "Header Design Card",
+      backgroundImage: "/headLight.svg",
+      locked: false,
+      comingSoon: false,
+      link: "/headstart",
+    },
+    {
+      title: "Metric Card",
+      backgroundImage: "/headLight.svg",
+      locked: GITHUB_FLAG ? false : true,
+      comingSoon: false,
+      link: "/headstart",
+    },
+    {
+      title: "Repo Pinned Card",
+      backgroundImage: "/headLight.svg",
+      locked: GITHUB_FLAG ? false : true,
+      comingSoon: false,
+      link: "/headstart",
+    },
+    {
+      title: "Footer Design Card",
+      backgroundImage: "/headLight.svg",
+      locked: true,
+      comingSoon: true,
+      link: "/headstart",
+    },
+  ];
+
   const getGithubData = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (inputValue !== "") {
+    if (inputValue === testGit?.login) {
+      try {
+        // console.log("data :>> ", data);
+        setGithubFlag(true);
+        setErrMesage(false);
+        setSuccMessage(true);
+        //
+        setImportantValue(true);
+        // Just Optional for adding expire in the cookies
+        //********************************** */
+        const d = new Date();
+        d.setTime(d.getTime() + 2 * 24 * 60 * 60 * 1000);
+        let expires = "expires=" + d.toUTCString();
+        // [Optional]:: ==> Debug ::::::::::::::::::::::::::::::::
+        // console.log("expires :>> ", expires);
+        // console.log("d :>> ", d);
+        // let cname = "rishu";
+        // let cvalue = "successfully storign the cookies";
+        // document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        // document.cookie = cname + "=" + cvalue + ";";
+        // ::::::::::::::::::::::::::::::::::::: <== Debug:::::::
+
+        //********* Adding Cookies ********** */
+        document.cookie = `githubUser=${inputValue}; expires=${expires}; path=/;`;
+        //********************************** */
+        // <::::::::below is the example of the cookie syntax!
+        // var c_value=escape(value) + "; expires=" + exdate.toUTCString(); + "; path=/spring; domain=aroth.no-ip.org";
+        // ::::::::::::>
+      } catch (error) {
+        console.log("Something went wrong!");
+        console.log("error", error);
+        setErrMesage(false);
+        setSuccMessage(true);
+      }
+    } else if (inputValue === "") {
+      alert("Please enter Github Username");
     } else {
-      alert("Please enter the Github Username!");
+      alert("Sorry unauthorised user!");
+      setErrMesage(true);
+      setSuccMessage(false);
     }
   };
+
+  useEffect(() => {
+    const documentCookies = document.cookie;
+    // [Optional]:: ==> Debug ::::::::::::::::::::::::::::::::
+    // console.log("makeArray :>> ", makeArray);
+    // console.log("customFunction(makeArray) :>> ", customFunction(makeArray));
+    // ::::::::::::::::::::::::::::::::::::: <== Debug:::::::
+    const cookie = convertCookieData(documentCookies);
+    cookie.map((item, index) => {
+      // [Optional]:: ==> Debug ::::::::::::::::::::::::::::::::
+      console.log("cookie :>> ", cookie);
+      // item?.key === " isDarkMode"
+      //   ? console.log("check :>> ", item)
+      //   : console.log("Sorry! can't find the isDarkMode");
+      // ::::::::::::::::::::::::::::::::::::: <== Debug:::::::
+      if (item?.key === "githubUser" || item?.key === " githubUser") {
+        setAutoCookie(item?.value);
+        if (IMPORTANT_FLAG) {
+          setGithubFlag(true);
+          setInputValue(item?.value);
+          setImportantValue(false);
+        }
+      }
+    });
+  }, [inputValue, COOKIE_CONFIG, GITHUB_FLAG]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -137,44 +241,49 @@ const Home: NextPage = (data) => {
               value={inputValue}
               onChange={(e) => {
                 e.preventDefault();
+                // setImportantValue(false);
                 setErrMesage(false);
                 setSuccMessage(false);
+                setGithubFlag(false);
                 setInputValue(e.target.value);
-                setTimeout(() => {
-                  if (e?.target?.value === testGit?.login) {
-                    try {
-                      //::::::::::::: For future release ::::::::::::::::::::::::>
-                      //********* Adding Cookies ********** */
-                      // document.cookie = `name=${testGit?.login}; expires=${expires}; path=/;`;
-                      // document.cookie = `name=${testGit?.login}; path=/;`;
-                      //********************************** */
-                      console.log("data :>> ", data);
-                    } catch (error) {
-                      console.log("Something went wrong!");
-                      console.log("error", error);
-                    }
-                    // if (
-                    //   testGit?.login !== "" ||
-                    //   testGit?.login !== undefined ||
-                    //   testGit?.login !== null
-                    // ) {
-                    setTimeout(() => {
-                      setErrMesage(false);
-                      setSuccMessage(true);
-                    }, 500);
-                  } else if (e?.target?.value === "") {
-                    setTimeout(() => {
-                      setErrMesage(false);
-                      setSuccMessage(false);
-                    }, 500);
-                  } else {
-                    setTimeout(() => {
-                      setErrMesage(true);
-                      setSuccMessage(false);
-                    }, 500);
-                  }
-                }, 300);
-                // console.log("inputValue :>> ", inputValue);
+                // setTimeout(() => {
+                //   if (e?.target?.value === testGit?.login) {
+                //     try {
+                //       //::::::::::::: For future release ::::::::::::::::::::::::>
+                //       //********* Adding Cookies ********** */
+                //       // document.cookie = `name=${testGit?.login}; expires=${expires}; path=/;`;
+                //       // document.cookie = `name=${testGit?.login}; path=/;`;
+                //       //********************************** */
+                //       console.log("data :>> ", data);
+                //       setGithubFlag(true);
+                //     } catch (error) {
+                //       console.log("Something went wrong!");
+                //       console.log("error", error);
+                //     }
+                //     // if (
+                //     //   testGit?.login !== "" ||
+                //     //   testGit?.login !== undefined ||
+                //     //   testGit?.login !== null
+                //     // ) {
+                //     setTimeout(() => {
+                //       setErrMesage(false);
+                //       setSuccMessage(true);
+                //     }, 500);
+                //   } else if (e?.target?.value === "") {
+                //     alert("Please enter Github Username");
+                //     setTimeout(() => {
+                //       setErrMesage(false);
+                //       setSuccMessage(false);
+                //     }, 500);
+                //   } else {
+                //     setTimeout(() => {
+                //       alert("Sorry unauthorised user!");
+                //       setErrMesage(true);
+                //       setSuccMessage(false);
+                //     }, 500);
+                //   }
+                // }, 300);
+                // // console.log("inputValue :>> ", inputValue);
               }}
             />
             <div
@@ -198,7 +307,25 @@ const Home: NextPage = (data) => {
 
         {/* Below the design block */}
         <div className={styles.desingCard}>
-          <AllCard />
+          {cardArray?.map((item, index) => (
+            <AllCard
+              key={index}
+              title={item?.title}
+              backgroundImage={item?.backgroundImage}
+              locked={item?.locked}
+              comingSoon={item?.comingSoon}
+              onClick={(e) => {
+                e.preventDefault();
+                if (item?.locked && !item?.comingSoon) {
+                  alert("Please enter Github Username");
+                } else if (item?.comingSoon && item?.locked) {
+                  alert("We are working on this :)");
+                } else {
+                  router.push("/headstart");
+                }
+              }}
+            />
+          ))}
         </div>
         {/* Above the design block */}
       </main>
@@ -255,5 +382,32 @@ const Home: NextPage = (data) => {
     </div>
   );
 };
+
+// This gets called on every request
+// export async function getServerSideProps(_context: any) {
+//   const githubUser = [""];
+//   const documentCookies = document.cookie;
+//   // [Optional]:: ==> Debug ::::::::::::::::::::::::::::::::
+//   // console.log("makeArray :>> ", makeArray);
+//   // console.log("customFunction(makeArray) :>> ", customFunction(makeArray));
+//   // ::::::::::::::::::::::::::::::::::::: <== Debug:::::::
+//   const cookie = convertCookieData(documentCookies);
+//   cookie.map((item, index) => {
+//     // [Optional]:: ==> Debug ::::::::::::::::::::::::::::::::
+//     console.log("cookie :>> ", cookie);
+//     // item?.key === " isDarkMode"
+//     //   ? console.log("check :>> ", item)
+//     //   : console.log("Sorry! can't find the isDarkMode");
+//     // ::::::::::::::::::::::::::::::::::::: <== Debug:::::::
+//     if (item?.key === "githubUser" || item?.key === " githubUser") {
+//       githubUser.push(item?.value);
+//     }
+//   });
+//   return {
+//     props: {
+//       data: githubUser?.length > 0 ? githubUser[0] : "",
+//     },
+//   };
+// }
 
 export default Home;

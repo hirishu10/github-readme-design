@@ -3,12 +3,44 @@ import styles from "../styles/AllCard.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the FontAwesomeIcon component
 import { faArrowRight, faCogs } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
 import { faGithub } from "@fortawesome/free-brands-svg-icons"; // import the icons you need
+import { type } from "os";
+import { url } from "inspector";
 
-const AllCard = () => {
+type AllCardConfig = {
+  locked?: boolean;
+  comingSoon?: boolean;
+  backgroundImage?: string;
+  title?: string;
+  onClick: (event: React.MouseEvent<HTMLDivElement>) => void;
+};
+
+const AllCard = ({
+  backgroundImage,
+  locked,
+  comingSoon,
+  title,
+  onClick,
+}: AllCardConfig) => {
   return (
-    <div className={styles.container}>
+    <div
+      style={{
+        backgroundImage: `url(${
+          backgroundImage ? backgroundImage : "/headLight.svg"
+        })`,
+      }}
+      className={styles.container}
+      onClick={onClick}
+    >
+      {locked || comingSoon ? (
+        <div className={styles.absoluteContainer}>
+          {`${comingSoon ? "Coming Soon" : "Please Enter Github Username"}`}
+        </div>
+      ) : null}
+
       <div className={styles.containerOne}>
-        <div className={styles.containerOneLabel}>Header Design Card</div>
+        <div className={styles.containerOneLabel}>
+          {title ? title : "Github-Readme-Design"}
+        </div>
       </div>
       <div className={styles.containerTwo}>
         <div className={styles.containerTwoInside}>
