@@ -56,7 +56,6 @@ const AllCard = ({
               e.currentTarget.style.color = "#bcbcbc";
               e.currentTarget.style.transition = "0.3s";
             }}
-            // onClick={getGithubData}
           >
             <FontAwesomeIcon icon={faArrowRight} size={"sm"} style={{}} />
           </div>

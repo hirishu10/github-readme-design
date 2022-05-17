@@ -47,3 +47,33 @@ $borderBottomForPreview: #d7dee5;
   //   transition: 0.3s;
   //   text-decoration: underline;
 }
+
+// Media Query
+@media (max-width: 1280px) {
+  .outerContainer {
+    height: 100px;
+    padding: 0px 100px 0px 100px;
+    line-height: 3em;
+  }
+}
+@media (max-width: 830px) {
+  .outerContainer {
+    height: 150px;
+    padding: 0px 110px 0px 110px;
+    line-height: 3em;
+  }
+}
+@media (max-width: 680px) {
+  .outerContainer {
+    height: 220px;
+    padding: 0px 110px 0px 110px;
+    line-height: 3em;
+  }
+}
+@media (max-width: 550px) {
+  .outerContainer {
+    height: 250px;
+    padding: 0px 30px 0px 30px;
+    line-height: 2em;
+  }
+}

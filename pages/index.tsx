@@ -18,16 +18,27 @@ import AllCard from "../components/AllCard";
 import Footer from "../components/Footer";
 import CookieBanner from "../components/CookieBanner";
 
+//::::> Get Redux Data
+import { customSelector, customDispatch } from "../app/hooks";
+import { setCookieEnabled, setGithubUsername } from "../redux/actions/index";
+
 const Home: NextPage = (data) => {
+  const dispatch = customDispatch();
+  const { cookieEnabled, githubUsername } = customSelector(
+    (state) => state.rootReducer
+  );
+  console.log("cookieEnabled :>> ", cookieEnabled);
+  console.log("process.env.NODE_ENV :>> ", process.env.NODE_ENV);
+
   // console.log("dataFromServer :>> ", data);
 
   const [errMesage, setErrMesage] = useState(false);
   const [succMessage, setSuccMessage] = useState(false);
-  const [loadMessage, setLoadMessage] = useState("...");
-  const [inputValue, setInputValue] = useState("");
-  const [GITHUB_FLAG, setGithubFlag] = useState(false);
-  const [COOKIE_CONFIG, setAutoCookie] = useState("");
-  const [IMPORTANT_FLAG, setImportantValue] = useState(true);
+  const [loadMessage, setLoadMessage] = useState("Setting up please wait.....");
+  const [inputValue, setInputValue] = useState(githubUsername);
+
+  // ::> Some Important Flags
+  const [GITHUB_FLAG, setGithubFlag] = useState(true);
   const [COOKIE_BANNER, setCookieBanner] = useState(true);
   // const [cookieData, setCookieData] = useState(""); // This will for future release
 
@@ -69,24 +80,6 @@ const Home: NextPage = (data) => {
     updated_at: "2022-04-14T06:45:23Z",
   };
 
-  //   // [Optional]:: ==> Future Release ::::::::::::::::::::::::::::::::
-  // useEffect(() => {
-  //   const documentCookies = document.cookie;
-  //   const cookie = convertCookieData(documentCookies);
-  //   cookie.map((item, index) => {
-  //     // ::::::::::::::::::::::::::::::::::::: Cookie :::::::
-  //     if (item?.key === " name") {
-  //       setCookieData(item?.value);
-  //     }
-  //     console.log("cookieData", cookieData);
-  //   });
-  // }, [inputValue, cookieData]);
-  //   // ::::::::::::::::::::::::::::::::::::: <== Future Release:::::::
-
-  // title={"Header Design Card"}
-  // backgroundImage={"/headLight.svg"}
-  // locked={true}
-  // // comingSoon={true}
   const cardArray = [
     {
       title: "Header Design Card",
@@ -98,14 +91,14 @@ const Home: NextPage = (data) => {
     {
       title: "Metric Card",
       backgroundImage: "/headLight.svg",
-      locked: GITHUB_FLAG ? false : true,
+      locked: GITHUB_FLAG ? true : false,
       comingSoon: false,
       link: "/headstart",
     },
     {
       title: "Repo Pinned Card",
       backgroundImage: "/headLight.svg",
-      locked: GITHUB_FLAG ? false : true,
+      locked: GITHUB_FLAG ? true : false,
       comingSoon: false,
       link: "/headstart",
     },
@@ -122,28 +115,27 @@ const Home: NextPage = (data) => {
     e.preventDefault();
     if (inputValue === testGit?.login) {
       try {
-        // console.log("data :>> ", data);
-        setGithubFlag(true);
+        setGithubFlag(false);
         setErrMesage(false);
         setSuccMessage(true);
         //
-        setImportantValue(true);
         // Just Optional for adding expire in the cookies
         //********************************** */
         const d = new Date();
         d.setTime(d.getTime() + 2 * 24 * 60 * 60 * 1000);
         let expires = "expires=" + d.toUTCString();
         // [Optional]:: ==> Debug ::::::::::::::::::::::::::::::::
-        // console.log("expires :>> ", expires);
-        // console.log("d :>> ", d);
-        // let cname = "rishu";
-        // let cvalue = "successfully storign the cookies";
-        // document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-        // document.cookie = cname + "=" + cvalue + ";";
-        // ::::::::::::::::::::::::::::::::::::: <== Debug:::::::
-
-        //********* Adding Cookies ********** */
-        document.cookie = `githubUser=${inputValue}; expires=${expires}; path=/;`;
+        const documentCookies = document.cookie;
+        const cookie = convertCookieData(documentCookies);
+        cookie?.map((item, index) => {
+          if (item?.key === "cookieEnabled" || item?.key === " cookieEnabled") {
+            if (item?.value === "true") {
+              // if cookie enabled then it will remembered the github username otherwise not
+              //********* Adding Cookies ********** */
+              document.cookie = `githubUsername=${inputValue}; expires=${expires}; path=/;`;
+            }
+          }
+        });
         //********************************** */
         // <::::::::below is the example of the cookie syntax!
         // var c_value=escape(value) + "; expires=" + exdate.toUTCString(); + "; path=/spring; domain=aroth.no-ip.org";
@@ -151,8 +143,8 @@ const Home: NextPage = (data) => {
       } catch (error) {
         console.log("Something went wrong!");
         console.log("error", error);
-        setErrMesage(false);
-        setSuccMessage(true);
+        setErrMesage(true);
+        setSuccMessage(false);
       }
     } else if (inputValue === "") {
       alert("Please enter Github Username");
@@ -164,30 +156,46 @@ const Home: NextPage = (data) => {
   };
 
   useEffect(() => {
+    // [Optional]:: ==> Debug ::::::::::::::::::::::::::::::::
+    // console.log("cookieEnabled :>> ", cookieEnabled);
+    // console.log("process.env.NODE_ENV :>> ", process.env.NODE_ENV);
+    //
     const documentCookies = document.cookie;
     // [Optional]:: ==> Debug ::::::::::::::::::::::::::::::::
     // console.log("makeArray :>> ", makeArray);
     // console.log("customFunction(makeArray) :>> ", customFunction(makeArray));
     // ::::::::::::::::::::::::::::::::::::: <== Debug:::::::
     const cookie = convertCookieData(documentCookies);
-    cookie.map((item, index) => {
+    cookie?.map((item, index) => {
       // [Optional]:: ==> Debug ::::::::::::::::::::::::::::::::
-      console.log("cookie :>> ", cookie);
-      // item?.key === " isDarkMode"
-      //   ? console.log("check :>> ", item)
-      //   : console.log("Sorry! can't find the isDarkMode");
+      // console.log("cookie :>> ", cookie);
       // ::::::::::::::::::::::::::::::::::::: <== Debug:::::::
-      if (item?.key === "githubUser" || item?.key === " githubUser") {
-        setAutoCookie(item?.value);
-        if (IMPORTANT_FLAG) {
-          setGithubFlag(true);
-          setInputValue(item?.value);
-          setImportantValue(false);
-          setCookieBanner(false);
+      //
+      if (item?.key === "cookieEnabled" || item?.key === " cookieEnabled") {
+        if (item?.value === "true") {
+          dispatch(setCookieEnabled(true));
+          setTimeout(() => {
+            setCookieBanner(true); // Refresh the Cookie Banner with the current cookieEnabled status
+          }, 500);
+        }
+      }
+      //
+      if (item?.key === "githubUsername" || item?.key === " githubUsername") {
+        dispatch(setGithubUsername(item?.value));
+        if (item?.value !== "") {
+          setTimeout(() => {
+            setInputValue(githubUsername);
+            setGithubFlag(false);
+          }, 500);
         }
       }
     });
-  }, [inputValue, COOKIE_CONFIG, GITHUB_FLAG, COOKIE_BANNER]);
+    //
+    setCookieBanner(cookieEnabled);
+    setTimeout(() => {
+      setLoadMessage("...");
+    }, 1000);
+  }, [COOKIE_BANNER, cookieEnabled, githubUsername]);
 
   return (
     <div className={styles.container}>
@@ -245,49 +253,10 @@ const Home: NextPage = (data) => {
               value={inputValue}
               onChange={(e) => {
                 e.preventDefault();
-                // setImportantValue(false);
+                setGithubFlag(true);
                 setErrMesage(false);
                 setSuccMessage(false);
-                setGithubFlag(false);
                 setInputValue(e.target.value);
-                // setTimeout(() => {
-                //   if (e?.target?.value === testGit?.login) {
-                //     try {
-                //       //::::::::::::: For future release ::::::::::::::::::::::::>
-                //       //********* Adding Cookies ********** */
-                //       // document.cookie = `name=${testGit?.login}; expires=${expires}; path=/;`;
-                //       // document.cookie = `name=${testGit?.login}; path=/;`;
-                //       //********************************** */
-                //       console.log("data :>> ", data);
-                //       setGithubFlag(true);
-                //     } catch (error) {
-                //       console.log("Something went wrong!");
-                //       console.log("error", error);
-                //     }
-                //     // if (
-                //     //   testGit?.login !== "" ||
-                //     //   testGit?.login !== undefined ||
-                //     //   testGit?.login !== null
-                //     // ) {
-                //     setTimeout(() => {
-                //       setErrMesage(false);
-                //       setSuccMessage(true);
-                //     }, 500);
-                //   } else if (e?.target?.value === "") {
-                //     alert("Please enter Github Username");
-                //     setTimeout(() => {
-                //       setErrMesage(false);
-                //       setSuccMessage(false);
-                //     }, 500);
-                //   } else {
-                //     setTimeout(() => {
-                //       alert("Sorry unauthorised user!");
-                //       setErrMesage(true);
-                //       setSuccMessage(false);
-                //     }, 500);
-                //   }
-                // }, 300);
-                // // console.log("inputValue :>> ", inputValue);
               }}
             />
             <div
@@ -345,7 +314,9 @@ const Home: NextPage = (data) => {
       {/*  */}
       {/* </div> */}
       {/*  */}
-      {COOKIE_BANNER ? <CookieBanner /> : null}
+      {COOKIE_BANNER ? null : <CookieBanner />}
+      {/* {!cookieEnabled ? <CookieBanner /> : null} */}
+      {/* <CookieBanner /> */}
       <Footer />
     </div>
   );

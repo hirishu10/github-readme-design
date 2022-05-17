@@ -4,3 +4,10 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
+// ::::: BELOW IS THE CONFIG FOR THE ENVIRONMENT VARIABLES:
+module.exports = {
+  env: {
+    // APP_ENV: "development",
+  },
+};
