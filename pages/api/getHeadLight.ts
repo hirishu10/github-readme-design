@@ -1,15 +1,16 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import React, { useState } from "react";
 import {
   getCustomDayNameFull,
   getCustomMonthNameShort,
   getCustomDate,
+  getCustomFullDateAndTimeWithAmPmIncludingSeconds,
 } from "@hirishu10/simple-date-time";
 //
 
 import fs from "fs";
 import path from "path";
+import React, { useState, useEffect } from "react";
 
 // type Data = {
 //   name: string;
@@ -21,6 +22,25 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const fullDay = getCustomDayNameFull();
   const shortMonth = getCustomMonthNameShort();
   const year = "2022";
+  const runnableClock = getCustomFullDateAndTimeWithAmPmIncludingSeconds();
+  // const [getDateTime, setDateTime] = useState("Date-Time");
+
+  console.log("toDate :>> ", toDate);
+  console.log("fullDay :>> ", fullDay);
+  console.log("shortMonth :>> ", shortMonth);
+  console.log("year :>> ", year);
+  console.log("runnableClock :>> ", runnableClock);
+  // useEffect(() => {
+  //   console.log("toDate :>> ", toDate);
+  //   console.log("fullDay :>> ", fullDay);
+  //   console.log("shortMonth :>> ", shortMonth);
+  //   console.log("year :>> ", year);
+  //   // console.log("runnableClock :>> ", runnableClock);
+  //   // setTimeout(() => {
+  //   //   let x = runnableClock;
+  //   //   setDateTime("Date-Time");
+  //   // }, 1000);
+  // }, []);
 
   const testGit = {
     login: "hirishu10",
@@ -1318,9 +1338,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             font-weight="medium"
             fill="#f6f6f6"
           >
-          <tspan>${fullDay}</tspan>
-            <tspan font-size="25" fill="#ff2b73" font-weight="700">${toDate}</tspan>
-            <tspan>${shortMonth}</tspan> <tspan>${year}</tspan>
+          <tspan>${getCustomDayNameFull()}</tspan>
+            <tspan font-size="25" fill="#ff2b73" font-weight="700">${getCustomDate()}</tspan>
+            <tspan>${getCustomMonthNameShort()}</tspan> <tspan>${year}</tspan>
           </text>
           </g>
 
@@ -1362,3 +1382,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     }
   }
 }
+const toDate = getCustomDate();
+const fullDay = getCustomDayNameFull();
+const shortMonth = getCustomMonthNameShort();
+const year = "2022";
+const runnableClock = getCustomFullDateAndTimeWithAmPmIncludingSeconds();
