@@ -9,7 +9,6 @@ import {
 //
 import { rawData } from "../../utils/test";
 import axios from "axios";
-
 import fs from "fs";
 import path from "path";
 import { useEffect } from "react";
@@ -24,7 +23,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (req.method === "GET") {
     axios
-      .get(`${process.env.GET_DATE_TIME}`)
+      .post(`${process.env.GET_DATE_TIME}`)
       .then((response) => {
         console.log(
           "response?.data() :>> ",
@@ -1350,7 +1349,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         // `;
 
         fs.writeFile(
-          "headLight.svg",
+          `${process.cwd()}/public/headLight.svg`,
           rawData(`${getCustomFullDateAndTimeWithAmPmIncludingSeconds()}`),
           (err) => {
             if (err) console.log(err);
@@ -1360,33 +1359,32 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           }
         );
         fs.close;
+
+        // const filePath = path.join(process.cwd(), "/headLight.svg");
+        // if (req.method === "GET") {
+        try {
+          const filePath = path.join(process.cwd(), "/public/headLight.svg");
+          const buffer = fs.readFileSync(filePath);
+          res.setHeader("Content-Type", "image/svg+xml");
+          setTimeout(() => {
+            res
+              .status(200)
+              // .send({
+              //   data:getCustomFullDateAndTimeWithAmPmIncludingSeconds(),
+              //   body:buffer
+              // })
+              .send(buffer);
+          }, 500);
+        } catch (error) {
+          res.status(404).send({
+            access: "Denied",
+            message: "Sorry for the inconvenience",
+            errorMessage: error,
+          });
+        }
       })
       .catch((err) => {
         console.log("err", err);
       });
-
-    // const filePath = path.join(process.cwd(), "/headLight.svg");
-    // if (req.method === "GET") {
-    try {
-      const filePath = path.join(process.cwd(), "/headLight.svg");
-      const buffer = fs.readFileSync(filePath);
-      res.setHeader("date", `${getCustomDate()}`);
-      res.setHeader("Content-Type", "image/svg+xml");
-      setTimeout(() => {
-        res
-          .status(200)
-          // .send({
-          //   data:getCustomFullDateAndTimeWithAmPmIncludingSeconds(),
-          //   body:buffer
-          // })
-          .send(buffer);
-      }, 500);
-    } catch (error) {
-      res.status(404).send({
-        access: "Denied",
-        message: "Sorry for the inconvenience",
-        errorMessage: error,
-      });
-    }
   }
 }
