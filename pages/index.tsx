@@ -17,6 +17,7 @@ import router from "next/router";
 import AllCard from "../components/AllCard";
 import Footer from "../components/Footer";
 import CookieBanner from "../components/CookieBanner";
+import Navbar from "../components/Navbar";
 
 //::::> Get Redux Data
 import { customSelector, customDispatch } from "../app/hooks";
@@ -34,7 +35,9 @@ const Home: NextPage = (data) => {
 
   const [errMesage, setErrMesage] = useState(false);
   const [succMessage, setSuccMessage] = useState(false);
-  const [loadMessage, setLoadMessage] = useState("Setting up please wait.....");
+  const [loadMessage, setLoadMessage] = useState(
+    "👨🏻‍💻 Setting up please wait..... ⚡️"
+  );
   const [inputValue, setInputValue] = useState(githubUsername);
 
   // ::> Some Important Flags
@@ -42,43 +45,43 @@ const Home: NextPage = (data) => {
   const [COOKIE_BANNER, setCookieBanner] = useState(true);
   // const [cookieData, setCookieData] = useState(""); // This will for future release
 
-  const testGit = {
-    login: "hirishu10",
-    id: 95957258,
-    node_id: "U_kgDOBbgxCg",
-    avatar_url: "https://avatars.githubusercontent.com/u/95957258?v=4",
-    gravatar_id: "",
-    url: "https://api.github.com/users/hirishu10",
-    html_url: "https://github.com/hirishu10",
-    followers_url: "https://api.github.com/users/hirishu10/followers",
-    following_url:
-      "https://api.github.com/users/hirishu10/following{/other_user}",
-    gists_url: "https://api.github.com/users/hirishu10/gists{/gist_id}",
-    starred_url:
-      "https://api.github.com/users/hirishu10/starred{/owner}{/repo}",
-    subscriptions_url: "https://api.github.com/users/hirishu10/subscriptions",
-    organizations_url: "https://api.github.com/users/hirishu10/orgs",
-    repos_url: "https://api.github.com/users/hirishu10/repos",
-    events_url: "https://api.github.com/users/hirishu10/events{/privacy}",
-    received_events_url:
-      "https://api.github.com/users/hirishu10/received_events",
-    type: "User",
-    site_admin: false,
-    name: "Rishu Chowdhary",
-    company: null,
-    blog: "",
-    location: null,
-    email: null,
-    hireable: true,
-    bio: null,
-    twitter_username: null,
-    public_repos: 14,
-    public_gists: 0,
-    followers: 0,
-    following: 0,
-    created_at: "2021-12-11T07:43:50Z",
-    updated_at: "2022-04-14T06:45:23Z",
-  };
+  // const testGit = {
+  //   login: "hirishu10",
+  //   id: 95957258,
+  //   node_id: "U_kgDOBbgxCg",
+  //   avatar_url: "https://avatars.githubusercontent.com/u/95957258?v=4",
+  //   gravatar_id: "",
+  //   url: "https://api.github.com/users/hirishu10",
+  //   html_url: "https://github.com/hirishu10",
+  //   followers_url: "https://api.github.com/users/hirishu10/followers",
+  //   following_url:
+  //     "https://api.github.com/users/hirishu10/following{/other_user}",
+  //   gists_url: "https://api.github.com/users/hirishu10/gists{/gist_id}",
+  //   starred_url:
+  //     "https://api.github.com/users/hirishu10/starred{/owner}{/repo}",
+  //   subscriptions_url: "https://api.github.com/users/hirishu10/subscriptions",
+  //   organizations_url: "https://api.github.com/users/hirishu10/orgs",
+  //   repos_url: "https://api.github.com/users/hirishu10/repos",
+  //   events_url: "https://api.github.com/users/hirishu10/events{/privacy}",
+  //   received_events_url:
+  //     "https://api.github.com/users/hirishu10/received_events",
+  //   type: "User",
+  //   site_admin: false,
+  //   name: "Rishu Chowdhary",
+  //   company: null,
+  //   blog: "",
+  //   location: null,
+  //   email: null,
+  //   hireable: true,
+  //   bio: null,
+  //   twitter_username: null,
+  //   public_repos: 14,
+  //   public_gists: 0,
+  //   followers: 0,
+  //   following: 0,
+  //   created_at: "2021-12-11T07:43:50Z",
+  //   updated_at: "2022-04-14T06:45:23Z",
+  // };
 
   const cardArray = [
     {
@@ -100,7 +103,7 @@ const Home: NextPage = (data) => {
       backgroundImage: "/headLight.svg",
       locked: GITHUB_FLAG ? true : false,
       comingSoon: false,
-      link: "/headstart",
+      link: "/star/repo/",
     },
     {
       title: "Footer Design Card",
@@ -111,7 +114,14 @@ const Home: NextPage = (data) => {
     },
   ];
 
-  const getGithubData = (e: { preventDefault: () => void }) => {
+  const getGithubData = async (e: { preventDefault: () => void }) => {
+    // let name = context?.params?.user;
+    // const res = await fetch(`https://api.github.com/users/${name}/starred`);
+    const res = await fetch(`https://api.github.com/users/${inputValue}`);
+    // const test = await res.json();
+    // console.log("testGit :>> ", test);
+    const testGit = await res.json();
+
     e.preventDefault();
     if (inputValue === testGit?.login) {
       try {
@@ -194,7 +204,7 @@ const Home: NextPage = (data) => {
     setCookieBanner(cookieEnabled);
     setTimeout(() => {
       setLoadMessage("...");
-    }, 1000);
+    }, 1500);
   }, [COOKIE_BANNER, cookieEnabled, githubUsername]);
 
   return (
@@ -204,7 +214,8 @@ const Home: NextPage = (data) => {
         <meta name="description" content="Generated by create next app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <nav className={styles.navHeader}>Github-Readme-Design</nav>
+      {/* <nav className={styles.navHeader}>Github-Readme-Design</nav> */}
+      <Navbar title={"Github-Readme-Design"} />
       <main className={styles.outerContainer}>
         {errMesage ? (
           <div className={styles.errorContainer}>
@@ -294,7 +305,11 @@ const Home: NextPage = (data) => {
                 } else if (item?.comingSoon && item?.locked) {
                   alert("We are working on this :)");
                 } else {
-                  router.push("/headstart");
+                  if (item?.title === "Repo Pinned Card") {
+                    router.push(`${item?.link}${inputValue}`);
+                  } else {
+                    router.push("/headstart");
+                  }
                 }
               }}
             />

@@ -4,81 +4,65 @@ import {
   getCustomDayNameFull,
   getCustomMonthNameShort,
   getCustomDate,
-  getCustomFullDateAndTimeWithAmPmIncludingSeconds,
 } from "@hirishu10/simple-date-time";
 //
 
 import fs from "fs";
 import path from "path";
-import React, { useState, useEffect } from "react";
 
 // type Data = {
 //   name: string;
 // };
 // res: NextApiResponse<Data>
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const toDate = getCustomDate();
-  const fullDay = getCustomDayNameFull();
-  const shortMonth = getCustomMonthNameShort();
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const response = await fetch(`http://localhost:3000/api/getDateTime`);
+  // const test = await res.json();
+  // console.log("testGit :>> ", test);
+  const testGit = await response.json();
+  console.log("testGit :>> ", testGit);
   const year = "2022";
-  const runnableClock = getCustomFullDateAndTimeWithAmPmIncludingSeconds();
-  // const [getDateTime, setDateTime] = useState("Date-Time");
 
-  console.log("toDate :>> ", toDate);
-  console.log("fullDay :>> ", fullDay);
-  console.log("shortMonth :>> ", shortMonth);
-  console.log("year :>> ", year);
-  console.log("runnableClock :>> ", runnableClock);
-  // useEffect(() => {
-  //   console.log("toDate :>> ", toDate);
-  //   console.log("fullDay :>> ", fullDay);
-  //   console.log("shortMonth :>> ", shortMonth);
-  //   console.log("year :>> ", year);
-  //   // console.log("runnableClock :>> ", runnableClock);
-  //   // setTimeout(() => {
-  //   //   let x = runnableClock;
-  //   //   setDateTime("Date-Time");
-  //   // }, 1000);
-  // }, []);
-
-  const testGit = {
-    login: "hirishu10",
-    id: 95957258,
-    node_id: "U_kgDOBbgxCg",
-    avatar_url: "https://avatars.githubusercontent.com/u/95957258?v=4",
-    gravatar_id: "",
-    url: "https://api.github.com/users/hirishu10",
-    html_url: "https://github.com/hirishu10",
-    followers_url: "https://api.github.com/users/hirishu10/followers",
-    following_url:
-      "https://api.github.com/users/hirishu10/following{/other_user}",
-    gists_url: "https://api.github.com/users/hirishu10/gists{/gist_id}",
-    starred_url:
-      "https://api.github.com/users/hirishu10/starred{/owner}{/repo}",
-    subscriptions_url: "https://api.github.com/users/hirishu10/subscriptions",
-    organizations_url: "https://api.github.com/users/hirishu10/orgs",
-    repos_url: "https://api.github.com/users/hirishu10/repos",
-    events_url: "https://api.github.com/users/hirishu10/events{/privacy}",
-    received_events_url:
-      "https://api.github.com/users/hirishu10/received_events",
-    type: "User",
-    site_admin: false,
-    name: "Rishu Chowdhary",
-    company: null,
-    blog: "",
-    location: null,
-    email: "hi.10rishu@gmail.com",
-    hireable: true,
-    bio: null,
-    twitter_username: "@rishuchowdhary",
-    public_repos: 14,
-    public_gists: 0,
-    followers: 0,
-    following: 0,
-    created_at: "2021-12-11T07:43:50Z",
-    updated_at: "2022-04-14T06:45:23Z",
-  };
+  // const testGit = {
+  //   login: "hirishu10",
+  //   id: 95957258,
+  //   node_id: "U_kgDOBbgxCg",
+  //   avatar_url: "https://avatars.githubusercontent.com/u/95957258?v=4",
+  //   gravatar_id: "",
+  //   url: "https://api.github.com/users/hirishu10",
+  //   html_url: "https://github.com/hirishu10",
+  //   followers_url: "https://api.github.com/users/hirishu10/followers",
+  //   following_url:
+  //     "https://api.github.com/users/hirishu10/following{/other_user}",
+  //   gists_url: "https://api.github.com/users/hirishu10/gists{/gist_id}",
+  //   starred_url:
+  //     "https://api.github.com/users/hirishu10/starred{/owner}{/repo}",
+  //   subscriptions_url: "https://api.github.com/users/hirishu10/subscriptions",
+  //   organizations_url: "https://api.github.com/users/hirishu10/orgs",
+  //   repos_url: "https://api.github.com/users/hirishu10/repos",
+  //   events_url: "https://api.github.com/users/hirishu10/events{/privacy}",
+  //   received_events_url:
+  //     "https://api.github.com/users/hirishu10/received_events",
+  //   type: "User",
+  //   site_admin: false,
+  //   name: "Rishu Chowdhary",
+  //   company: null,
+  //   blog: "",
+  //   location: null,
+  //   email: "hi.10rishu@gmail.com",
+  //   hireable: true,
+  //   bio: null,
+  //   twitter_username: "@rishuchowdhary",
+  //   public_repos: 14,
+  //   public_gists: 0,
+  //   followers: 0,
+  //   following: 0,
+  //   created_at: "2021-12-11T07:43:50Z",
+  //   updated_at: "2022-04-14T06:45:23Z",
+  // };
   const title = "Software Developer";
   // const title = "Full Stack Developer";
   // const title = "Software Engineering II";
@@ -1338,7 +1322,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             font-weight="medium"
             fill="#f6f6f6"
           >
-          <tspan>${getCustomDayNameFull()}</tspan>
+          <tspan>${testGit?.message?.toTimeStamp}</tspan>
             <tspan font-size="25" fill="#ff2b73" font-weight="700">${getCustomDate()}</tspan>
             <tspan>${getCustomMonthNameShort()}</tspan> <tspan>${year}</tspan>
           </text>
@@ -1382,8 +1366,3 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     }
   }
 }
-const toDate = getCustomDate();
-const fullDay = getCustomDayNameFull();
-const shortMonth = getCustomMonthNameShort();
-const year = "2022";
-const runnableClock = getCustomFullDateAndTimeWithAmPmIncludingSeconds();

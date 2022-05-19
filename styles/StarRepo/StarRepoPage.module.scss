@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@500&display=swap");
+
+.container {
+  // padding: 0 2rem;
+}
+.outerContainer {
+  min-height: 70vh;
+  // padding: 2rem 0;
+  padding: 2px 0px 0px 0px;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: flex-start;
+  // align-items: center;
+  // background-color: purple;
+  font-family: Poppins, sans-serif;
+}
+.containerForBoxAndTitle {
+  width: 100%;
+  height: 150px;
+  background-color: #e9ecef;
+  // box-shadow: 0px 0px 5px 1px #acacac;
+}
+.selectBox {
+  width: 100%;
+  height: 50%;
+  // background-color: orange;
+}
+.selectBoxOne {
+  width: 100%;
+  height: 50%;
+  // background-color: olive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.selectBoxTwo {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.select {
+  // max-width: 400px;
+  height: 30px;
+  border: none;
+  text-align: center;
+  outline-style: none;
+}
+
+//:::::::::::::::::;
+.titleBox {
+  width: 100%;
+  height: 50%;
+  // background-color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // border-bottom: 1px solid silver;
+}
+.boxOne {
+  width: 30%;
+  height: 100%;
+  // background-color: goldenrod;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 10px;
+  font-size: 20px;
+}
+.boxTwo {
+  width: 70%;
+  height: 100%;
+  // background-color: darkorchid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.darkLightMode {
+  width: 80px;
+  height: 30px;
+  margin-right: 100px;
+  border: none;
+  text-align: center;
+  outline-style: none;
+}
+.copyButton {
+  width: 100px;
+  height: 30px;
+  border: none;
+  text-align: center;
+  outline-style: none;
+  background-color: rgb(44, 131, 219);
+  color: white;
+  cursor: pointer;
+}
+.designBackground {
+  width: 100%;
+  height: 320px;
+  // background-color: red;
+}
+.helpus {
+  width: 100%;
+  height: 30px;
+  // background-color: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #7d7d7d;
+  transition: 0.3s;
+}
+.projectButton:hover {
+  cursor: pointer;
+  color: black;
+  transition: 0.2s;
+}

@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import React, { useState } from "react";
 import {
   getCustomDayNameFull,
   getCustomMonthNameShort,
@@ -17,9 +16,6 @@ import path from "path";
 // res: NextApiResponse<Data>
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const toDate = getCustomDate();
-  const fullDay = getCustomDayNameFull();
-  const shortMonth = getCustomMonthNameShort();
   const year = "2022";
 
   const testGit = {
@@ -63,11 +59,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   // const title = "Full Stack Developer";
   // const title = "Software Engineering II";
   // const title = "Data Analyst";
-
-  // const name = "Rishu Chowdhary";
-  // const day = "Friday";
-  // const date = "11";
-  // const month = "May";
 
   const data = `
     <svg width="1280" height="190" viewBox="0 0 1280 190" xmlns="http://www.w3.org/2000/svg" enableBackground="new 0 0 1280 190" xmlSpace="preserve" >
@@ -1260,9 +1251,9 @@ Mi0wNS0xNVQxMDozMDowMiswMzowMBEjtZEAAAAASUVORK5CYII="
             font-weight="medium"
             fill="#f6f6f6"
           >
-            <tspan>${fullDay}</tspan>
-            <tspan font-size="25" fill="#ff2b73" font-weight="700">${toDate}</tspan>
-            <tspan>${shortMonth}</tspan> <tspan>${year}</tspan>
+            <tspan>${getCustomDayNameFull()}</tspan>
+            <tspan font-size="25" fill="#ff2b73" font-weight="700">${getCustomDate()}</tspan>
+            <tspan>${getCustomMonthNameShort()}</tspan> <tspan>${year}</tspan>
           </text>
           </g>
 

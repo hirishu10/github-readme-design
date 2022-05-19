@@ -51,14 +51,14 @@ $borderBottomForPreview: #d7dee5;
 // Media Query
 @media (max-width: 1280px) {
   .outerContainer {
-    height: 100px;
+    height: 150px;
     padding: 0px 100px 0px 100px;
     line-height: 3em;
   }
 }
 @media (max-width: 830px) {
   .outerContainer {
-    height: 150px;
+    height: 200px;
     padding: 0px 110px 0px 110px;
     line-height: 3em;
   }

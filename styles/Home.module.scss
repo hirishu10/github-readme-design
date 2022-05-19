@@ -3,25 +3,9 @@
 .container {
   // padding: 0 2rem;
 }
-.navHeader {
-  width: 100%;
-  height: 100px;
-  // background-color: black;
-  background-color: #072130;
-  color: white;
-  display: flex;
-  font-size: 2em;
-  display: flex;
-  // flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: Poppins, sans-serif;
-  box-shadow: 0px 0px 5px 1px #ff0303;
-}
 .outerContainer {
   min-height: 70vh;
   padding: 2rem 0;
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -74,6 +58,7 @@
   justify-content: center;
   align-items: center;
   transition: 0.5s;
+  font-family: Poppins, sans-serif;
 }
 //
 .repoBoxContainer {
@@ -176,19 +161,10 @@
   .desingCard {
     grid-template-columns: auto auto;
   }
-  .navHeader {
-    font-size: 1.9em;
-  }
 }
 @media (max-width: 660px) {
   .desingCard {
     grid-template-columns: auto;
     height: 70vh;
-  }
-}
-
-@media (max-width: 740px) {
-  .navHeader {
-    font-size: 1.3em;
   }
 }
