@@ -4,6 +4,7 @@ import {
   getCustomDayNameFull,
   getCustomMonthNameShort,
   getCustomDate,
+  getCustomFullDateAndTimeWithAmPmIncludingSeconds,
 } from "@hirishu10/simple-date-time";
 //
 import axios from "axios";
@@ -17,6 +18,8 @@ import path from "path";
 // res: NextApiResponse<Data>
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  let d = new Date();
+
   const year = "2022";
 
   axios
@@ -70,7 +73,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       // const title = "Software Engineering II";
       // const title = "Data Analyst";
 
-      const data = `
+      const rawData = `
         <svg width="1280" height="190" viewBox="0 0 1280 190" xmlns="http://www.w3.org/2000/svg" enableBackground="new 0 0 1280 190" xmlSpace="preserve" >
               <image
               id="image0"
@@ -1325,7 +1328,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 fill="#f6f6f6"
               >
               <tspan>${response?.data?.message?.toTimeStamp}</tspan>
-                <tspan font-size="25" fill="#ff2b73" font-weight="700">${getCustomDate()}</tspan>
+                <tspan font-size="25" fill="#ff2b73" font-weight="700">${d.getSeconds()}</tspan>
                 <tspan>${getCustomMonthNameShort()}</tspan> <tspan>${year}</tspan>
               </text>
               </g>
@@ -1345,7 +1348,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     </svg>
     `;
 
-      fs.writeFile("headLight.svg", data, (err) => {
+      fs.writeFile("headLight.svg", rawData, (err) => {
         if (err) console.log(err);
         else {
           console.log("File written successfully\n");
@@ -1362,7 +1365,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       const buffer = fs.readFileSync(filePath);
       res.setHeader("Content-Type", "image/svg+xml");
       setTimeout(() => {
-        res.status(200).send(buffer);
+        res
+          .status(200)
+          // .send({
+          //   data:getCustomFullDateAndTimeWithAmPmIncludingSeconds(),
+          //   body:buffer
+          // })
+          .send(buffer);
       }, 500);
     } catch (error) {
       res.status(404).send({
