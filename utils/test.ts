@@ -1,4 +1,17 @@
+import {
+  getCustomDayNameFull,
+  getCustomMonthNameShort,
+  getCustomDate,
+  getCustomFullDateAndTimeWithAmPmIncludingSeconds,
+  getCustomSecond,
+  getCustomFullDateAndTimeWithAmPm,
+} from "@hirishu10/simple-date-time";
 
+let d = new Date();
+const year = "2022";
+
+export const rawData = (todate: string) =>
+  `
 <svg width="1280" height="190" viewBox="0 0 1280 190" xmlns="http://www.w3.org/2000/svg" enableBackground="new 0 0 1280 190" xmlSpace="preserve" >
       <image
       id="image0"
@@ -1252,9 +1265,9 @@
         font-weight="medium"
         fill="#f6f6f6"
       >
-      <tspan>52</tspan>
-        <tspan font-size="25" fill="#ff2b73" font-weight="700">11</tspan>
-        <tspan>19 May Thursday 6:35:52pm</tspan> <tspan>2022</tspan>
+      <tspan>${getCustomSecond()}</tspan>
+        <tspan font-size="25" fill="#ff2b73" font-weight="700">${d.getSeconds()}</tspan>
+        <tspan>${todate}</tspan> <tspan>${year}</tspan>
       </text>
       </g>
 
@@ -1271,3 +1284,4 @@
     </text>
   </g>
 </svg>
+`;
