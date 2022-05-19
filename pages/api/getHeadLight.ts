@@ -23,7 +23,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (req.method === "GET") {
     axios
-      .post(`${process.env.GET_DATE_TIME}`)
+      .get(`${process.env.GET_DATE_TIME}`)
       .then((response) => {
         console.log(
           "response?.data() :>> ",
