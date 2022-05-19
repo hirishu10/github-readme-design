@@ -21,7 +21,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const year = "2022";
 
   try {
-    res.status(404).send({
+    res.status(200).send({
       access: "Success",
       message: {
         toDate: toDate ? toDate : "Error!",
