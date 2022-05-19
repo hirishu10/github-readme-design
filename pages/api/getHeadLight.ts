@@ -19,7 +19,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const response = await fetch(`http://localhost:3000/api/getDateTime`);
+  const response = await fetch(`${process.env.GET_DATE_TIME}`);
   // const test = await res.json();
   // console.log("testGit :>> ", test);
   const testGit = await response.json();
