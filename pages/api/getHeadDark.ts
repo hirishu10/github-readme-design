@@ -1251,9 +1251,9 @@ Mi0wNS0xNVQxMDozMDowMiswMzowMBEjtZEAAAAASUVORK5CYII="
             font-weight="medium"
             fill="#f6f6f6"
           >
-            <tspan>${getCustomDayNameFull()}</tspan>
-            <tspan font-size="25" fill="#ff2b73" font-weight="700">${getCustomDate()}</tspan>
-            <tspan>${getCustomMonthNameShort()}</tspan> <tspan>${year}</tspan>
+            <tspan>${req?.query?.user ? req?.query?.user : null}</tspan>
+            <tspan font-size="25" fill="#ff2b73" font-weight="700">|</tspan>
+            <tspan>${req?.query?.email ? req?.query?.email : null}</tspan>
           </text>
           </g>
 
