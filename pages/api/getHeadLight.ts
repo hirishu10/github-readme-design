@@ -8,6 +8,9 @@ import {
   getCustomSecond,
 } from "@hirishu10/simple-date-time";
 //
+import { dbAuth } from "../../firebase";
+import * as firestore from "firebase/firestore";
+//
 import { rawData } from "../../utils/test";
 import axios from "axios";
 
@@ -21,6 +24,26 @@ import path from "path";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const year = "2022";
+  const mainCollection = firestore.collection(dbAuth, "testData"); // This is very important don't delete this
+  const mainDocument = firestore.doc(mainCollection, "rawData");
+  firestore
+    .setDoc(
+      mainDocument,
+      {
+        time: getCustomFullDateAndTimeWithAmPmIncludingSeconds(),
+      },
+      { merge: true }
+    )
+    .then((r) => {
+      console.log("Success");
+    })
+    .catch((err) => {
+      console.log("err :>> ", err);
+    });
+  // const queryDocument = firestore.query(
+  //   mainCollection,
+  //   firestore.orderBy("timestamp")
+  // );
 
   const testGit = {
     login: "hirishu10",

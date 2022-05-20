@@ -1255,7 +1255,7 @@
                 <tspan>Friday</tspan>
                   <tspan font-size="25" fill="#ff2b73" font-weight="700">20</tspan>
                   <tspan>May</tspan> <tspan>2022</tspan>
-                  <tspan>19</tspan>
+                  <tspan>null</tspan>
                 </text>
                 </g>
 
