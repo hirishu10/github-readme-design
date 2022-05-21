@@ -9,11 +9,6 @@ import {
   getCustomMinute,
 } from "@hirishu10/simple-date-time";
 //
-import { rawData } from "../../utils/test";
-import axios from "axios";
-
-import fs from "fs";
-import path from "path";
 
 // type Data = {
 //   name: string;

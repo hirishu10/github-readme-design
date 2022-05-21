@@ -72,14 +72,31 @@
   width: 70%;
   height: 100%;
   // background-color: darkorchid;
-  display: flex;
+  display: grid;
+  // display: flex;
+  grid-template-columns: auto auto auto;
   justify-content: center;
   align-items: center;
 }
 .darkLightMode {
   width: 80px;
   height: 30px;
-  margin-right: 100px;
+  margin-right: 50px;
+  border: none;
+  text-align: center;
+  outline-style: none;
+}
+
+.licenseBox {
+  width: 100px;
+  height: 30px;
+  // background-color: red;
+  margin-right: 50px;
+}
+.licenseSelect {
+  width: 100%;
+  height: 30px;
+  margin-right: 50px;
   border: none;
   text-align: center;
   outline-style: none;
@@ -97,7 +114,12 @@
 .designBackground {
   width: 100%;
   height: 320px;
+
   // background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .helpus {
   width: 100%;

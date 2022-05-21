@@ -43,45 +43,6 @@ const Home: NextPage = (data) => {
   // ::> Some Important Flags
   const [GITHUB_FLAG, setGithubFlag] = useState(true);
   const [COOKIE_BANNER, setCookieBanner] = useState(true);
-  // const [cookieData, setCookieData] = useState(""); // This will for future release
-
-  // const testGit = {
-  //   login: "hirishu10",
-  //   id: 95957258,
-  //   node_id: "U_kgDOBbgxCg",
-  //   avatar_url: "https://avatars.githubusercontent.com/u/95957258?v=4",
-  //   gravatar_id: "",
-  //   url: "https://api.github.com/users/hirishu10",
-  //   html_url: "https://github.com/hirishu10",
-  //   followers_url: "https://api.github.com/users/hirishu10/followers",
-  //   following_url:
-  //     "https://api.github.com/users/hirishu10/following{/other_user}",
-  //   gists_url: "https://api.github.com/users/hirishu10/gists{/gist_id}",
-  //   starred_url:
-  //     "https://api.github.com/users/hirishu10/starred{/owner}{/repo}",
-  //   subscriptions_url: "https://api.github.com/users/hirishu10/subscriptions",
-  //   organizations_url: "https://api.github.com/users/hirishu10/orgs",
-  //   repos_url: "https://api.github.com/users/hirishu10/repos",
-  //   events_url: "https://api.github.com/users/hirishu10/events{/privacy}",
-  //   received_events_url:
-  //     "https://api.github.com/users/hirishu10/received_events",
-  //   type: "User",
-  //   site_admin: false,
-  //   name: "Rishu Chowdhary",
-  //   company: null,
-  //   blog: "",
-  //   location: null,
-  //   email: null,
-  //   hireable: true,
-  //   bio: null,
-  //   twitter_username: null,
-  //   public_repos: 14,
-  //   public_gists: 0,
-  //   followers: 0,
-  //   following: 0,
-  //   created_at: "2021-12-11T07:43:50Z",
-  //   updated_at: "2022-04-14T06:45:23Z",
-  // };
 
   const cardArray = [
     {
@@ -125,9 +86,12 @@ const Home: NextPage = (data) => {
     e.preventDefault();
     if (inputValue === testGit?.login) {
       try {
-        setGithubFlag(false);
-        setErrMesage(false);
-        setSuccMessage(true);
+        setLoadMessage("Please wait...");
+        setTimeout(() => {
+          setGithubFlag(false);
+          setErrMesage(false);
+          setSuccMessage(true);
+        }, 800);
         //
         // Just Optional for adding expire in the cookies
         //********************************** */
@@ -306,7 +270,13 @@ const Home: NextPage = (data) => {
                   alert("We are working on this :)");
                 } else {
                   if (item?.title === "Repo Pinned Card") {
+                    setLoadMessage("Please wait...");
+                    setSuccMessage(false);
+                    setErrMesage(false);
                     router.push(`${item?.link}${inputValue}`);
+                    setTimeout(() => {
+                      setLoadMessage("...");
+                    }, 800);
                   } else {
                     router.push("/headstart");
                   }

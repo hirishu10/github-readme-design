@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import styles from "../../../styles/StarRepo/StarRepoPage.module.scss";
 import Navbar from "../../../components/Navbar";
@@ -10,10 +10,25 @@ import {
   faArrowUpRightFromSquare,
 } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
 import { faGithub } from "@fortawesome/free-brands-svg-icons"; //
+import $ from "jquery";
+import "animate.css";
 
+//
 function User({ data }) {
-  //   return <div>{`Testing the data => ${data}`}</div>;
-  //   console.log("data", data);
+  const [getDarkMode, setDarkMode] = useState(false);
+  const [getStatus, setStatus] = useState("...");
+  const [getCurrentRepo, setCurrentRepo] = useState("");
+  const [getCurrentDescription, setCurrentDescription] = useState("");
+  const [getCurrentStarCount, setCurrentStarCount] = useState("");
+  const [getCurrentForkCount, setCurrentForkCount] = useState("");
+  const [getCurrentLanguage, setCurrentLanguage] = useState("");
+  const [getCurrentLicense, setCurrentLicense] = useState("");
+
+  useEffect(() => {
+    console.log("testing.....");
+    console.log("data :>> ", data);
+  }, [getCurrentRepo, getDarkMode, getCurrentDescription, getCurrentLicense]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -29,10 +44,29 @@ function User({ data }) {
               Please select the Repo below:
             </div>
             <div className={styles.selectBoxTwo}>
-              <select className={styles.select}>
+              <select
+                className={styles.select}
+                value={getCurrentRepo}
+                onChange={(e) => {
+                  e.preventDefault();
+                  setStatus("Loading...");
+                  setCurrentRepo(e?.target?.value);
+                  for (let i = 0; i < data?.length; i++) {
+                    if (data[i].name === e?.target?.value) {
+                      setCurrentDescription(data[i].description);
+                      setCurrentStarCount(data[i].stargazers_count);
+                      setCurrentForkCount(data[i].forks_count);
+                      setCurrentLanguage(data[i].language);
+                      setTimeout(() => {
+                        setStatus("...");
+                      }, 1000);
+                    }
+                  }
+                }}
+              >
                 <option value="choose_repo">Choose Repo</option>
                 {data?.map((item, index) => (
-                  <option value={item} key={index}>
+                  <option value={item?.name} key={index}>
                     {item?.name}
                   </option>
                 ))}
@@ -42,15 +76,63 @@ function User({ data }) {
           <div className={styles.titleBox}>
             <div className={styles.boxOne}>#Preview</div>
             <div className={styles.boxTwo}>
-              <select className={styles.darkLightMode}>
+              <select
+                className={styles.darkLightMode}
+                onChange={(e) => {
+                  e.preventDefault();
+                  setDarkMode(!getDarkMode);
+                }}
+              >
                 <option value="light">Light</option>
                 <option value="dark">Dark</option>
               </select>
+              {/*  */}
+              <div className={styles.licenseBox}>
+                <select
+                  className={styles.licenseSelect}
+                  onChange={(e) => {
+                    e.preventDefault();
+                    setCurrentLicense(e?.target?.value);
+                  }}
+                >
+                  <option value=";)">License</option>
+                  <option value="Apache 2.0">Apache 2.0</option>
+                  <option value="MIT">MIT</option>
+                  <option value="ISC">ISC</option>
+                  <option value="Unlicense">Unlicense</option>
+                </select>
+              </div>
+              {/*  */}
               <button
+                id="copyButton"
                 className={styles.copyButton}
                 onClick={(e) => {
                   e.preventDefault();
-                  alert("URL Coppied!");
+                  // Clipboard API:-
+                  navigator.clipboard
+                    .writeText(
+                      getDarkMode
+                        ? `http://localhost:3000/api/starRepo/getStarDark?name=${getCurrentRepo}&description=${getCurrentDescription}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`
+                        : `http://localhost:3000/api/starRepo/getStarLight?name=${getCurrentRepo}&description=${getCurrentDescription}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`
+                    )
+                    .then((v) => {
+                      // ************* Some style for clicking the button ******************
+                      //  Using J-Query and Animate.css
+                      setStatus("URL Coppied Successfully");
+                      $("#copyButton").addClass(
+                        "animate__animated animate__bounceIn"
+                      );
+                      setTimeout(() => {
+                        setStatus("...");
+                        $("#copyButton").removeClass(
+                          "animate__animated animate__bounceIn"
+                        );
+                      }, 800);
+                      // ************* Some style for clicking the button ******************
+                    })
+                    .catch((err) => {
+                      console.log("err", err);
+                    });
                 }}
               >
                 Copy URL
@@ -59,7 +141,33 @@ function User({ data }) {
           </div>
         </div>
         {/* ::::::::::::::::::::::::::::::::::::: */}
-        <div className={styles.designBackground}></div>
+        <div
+          className={styles.designBackground}
+          style={{
+            backgroundColor: getDarkMode ? "#0b2850" : "white",
+            color: getDarkMode ? "#dde1eb" : "#0b2850",
+          }}
+        >
+          {/* background below */}
+          <span
+            style={{
+              marginBottom: 30,
+            }}
+          >
+            {getStatus}
+          </span>
+          {getDarkMode ? (
+            <img
+              id="getLink"
+              src={`http://localhost:3000/api/starRepo/getStarDark?name=${getCurrentRepo}&description=${getCurrentDescription}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`}
+            />
+          ) : (
+            <img
+              id="getLink"
+              src={`http://localhost:3000/api/starRepo/getStarLight?name=${getCurrentRepo}&description=${getCurrentDescription}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`}
+            />
+          )}
+        </div>
         <div className={styles.helpus}>
           Please help us to improve this for everyone need Thank You!
           <a
