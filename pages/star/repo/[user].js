@@ -112,8 +112,8 @@ function User({ data }) {
                   navigator.clipboard
                     .writeText(
                       getDarkMode
-                        ? `http://localhost:3000/api/starRepo/getStarDark?name=${getCurrentRepo}&description=${getCurrentDescription}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`
-                        : `http://localhost:3000/api/starRepo/getStarLight?name=${getCurrentRepo}&description=${getCurrentDescription}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`
+                        ? `${process.env.APP_NAME}api/starRepo/getStarDark?name=${getCurrentRepo}&description=${getCurrentDescription}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`
+                        : `${process.env.APP_NAME}api/starRepo/getStarLight?name=${getCurrentRepo}&description=${getCurrentDescription}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`
                     )
                     .then((v) => {
                       // ************* Some style for clicking the button ******************
@@ -159,12 +159,12 @@ function User({ data }) {
           {getDarkMode ? (
             <img
               id="getLink"
-              src={`http://localhost:3000/api/starRepo/getStarDark?name=${getCurrentRepo}&description=${getCurrentDescription}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`}
+              src={`${process.env.APP_NAME}api/starRepo/getStarDark?name=${getCurrentRepo}&description=${getCurrentDescription}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`}
             />
           ) : (
             <img
               id="getLink"
-              src={`http://localhost:3000/api/starRepo/getStarLight?name=${getCurrentRepo}&description=${getCurrentDescription}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`}
+              src={`${process.env.APP_NAME}api/starRepo/getStarLight?name=${getCurrentRepo}&description=${getCurrentDescription}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`}
             />
           )}
         </div>

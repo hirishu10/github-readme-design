@@ -8,6 +8,7 @@ module.exports = nextConfig;
 // ::::: BELOW IS THE CONFIG FOR THE ENVIRONMENT VARIABLES:
 module.exports = {
   env: {
+    APP_NAME: "https://github-readme-design.vercel.app/",
     ERROR_MESSAGE: "Something went wrong please refresh the page!",
     // ERROR_MESSAGE:
     //   "Sorry! for the inconvenience we are udpating this page. It will fixed soon.....",
