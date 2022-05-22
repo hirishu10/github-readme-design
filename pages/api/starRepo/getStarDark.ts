@@ -372,7 +372,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           </g>
         </svg>
 `;
-
       res.setHeader("Content-Type", "image/svg+xml");
       setTimeout(() => {
         res.status(200).send(data);
