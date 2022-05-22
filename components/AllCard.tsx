@@ -1,10 +1,7 @@
 import React from "react";
 import styles from "../styles/AllCard.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the FontAwesomeIcon component
-import { faArrowRight, faCogs } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
-import { faGithub } from "@fortawesome/free-brands-svg-icons"; // import the icons you need
-import { type } from "os";
-import { url } from "inspector";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
 
 type AllCardConfig = {
   locked?: boolean;

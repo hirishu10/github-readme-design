@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@500&display=swap");
+
+.container {
+  // padding: 0 2rem;
+}
+.outerContainer {
+  min-height: 70vh;
+  padding: 2px 0px 0px 0px;
+  //   background-color: purple;
+  font-family: Poppins, sans-serif;
+}
+
+.bannerContainer {
+  //   background-color: red;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0px 10px 0px 10px;
+  margin-bottom: 50px;
+}
+.copyButton {
+  width: 100px;
+  height: 30px;
+  border: none;
+  text-align: center;
+  outline-style: none;
+  background-color: rgb(44, 131, 219);
+  color: white;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.designBackground {
+  width: 100%;
+  // background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.helpus {
+  width: 100%;
+  height: 30px;
+  // background-color: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #7d7d7d;
+  transition: 0.3s;
+}
+.projectButton:hover {
+  cursor: pointer;
+  color: black;
+  transition: 0.2s;
+}
+
+// Media Query
+@media (max-width: 985px) {
+  .bannerContainer {
+    flex-direction: column;
+  }
+  .copyButton {
+    margin-top: 10px;
+  }
+}
+@media (max-width: 520px) {
+  .helpus {
+    font-size: 15px;
+  }
+}
+@media (max-width: 480px) {
+  .helpus {
+    font-size: 12px;
+  }
+}
+@media (max-width: 385px) {
+  .helpus {
+    font-size: 10px;
+  }
+}
+@media (max-width: 340px) {
+  .helpus {
+    font-size: 9px;
+  }
+}

@@ -3,10 +3,13 @@ import React, { useEffect } from "react";
 import styles from "../styles/CookiePolicy.module.scss";
 import $ from "jquery";
 import Head from "next/head";
+import { logEvent } from "@firebase/analytics";
+import { analytics } from "../firebase";
 
 const CookiePolicy = () => {
   //
   useEffect(() => {
+    logEvent(analytics, "screen_view");
     $("body").css("background-color", "#F6F6F6");
   }, []);
   //

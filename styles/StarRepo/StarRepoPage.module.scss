@@ -96,7 +96,7 @@
 .licenseSelect {
   width: 100%;
   height: 30px;
-  margin-right: 50px;
+  // margin-right: 50px;
   border: none;
   text-align: center;
   outline-style: none;
@@ -135,4 +135,53 @@
   cursor: pointer;
   color: black;
   transition: 0.2s;
+}
+
+// Media Query
+// @media (max-width: 985px) {
+//   .bannerContainer {
+//     flex-direction: column;
+//   }
+//   .copyButton {
+//     margin-top: 10px;
+//   }
+// }
+
+@media (max-width: 560px) {
+  .containerForBoxAndTitle {
+    height: 200px;
+  }
+  .darkLightMode {
+    margin-right: 0px;
+  }
+  .licenseBox {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 470px) {
+  .titleBox {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 520px) {
+  .helpus {
+    font-size: 15px;
+  }
+}
+@media (max-width: 480px) {
+  .helpus {
+    font-size: 12px;
+  }
+}
+@media (max-width: 385px) {
+  .helpus {
+    font-size: 10px;
+  }
+}
+@media (max-width: 340px) {
+  .helpus {
+    font-size: 9px;
+  }
 }

@@ -11,7 +11,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 // import MessagesAndDownloadBlock from "../components/typescriptComponents/MessagesAndDownloadBlock.tsx";
 import Head from "next/head";
-import TestCard from "../components/TestCard";
+// import TestCard from "../components/TestCard";
 // import  from "react-firebase-hooks";
 // import $ from "jquery";
 // import one from "../public/test/rishuOne.gif";

@@ -1,7 +1,7 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { getAnalytics, logEvent } from "firebase/analytics";
+import { Analytics, getAnalytics, logEvent } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
@@ -17,7 +17,7 @@ export const app =
   getApps()?.length <= 0 ? initializeApp(firebaseConfig) : getApp();
 
 //
-let analytics;
+let analytics: Analytics;
 if (app.name && typeof window !== "undefined") {
   analytics = getAnalytics(app);
 

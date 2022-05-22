@@ -20,7 +20,6 @@ import TestCard from "../components/TestCard";
 // import FooterBar from "../components/FooterBar";
 // import FooterBarSecond from "../components/FooterBarSecond";
 
-import sCode from "../styles/GithubProfile.module.scss";
 import {
   getCustomDayNameFull,
   getCustomDayNameShort,

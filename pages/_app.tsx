@@ -10,10 +10,13 @@ import { Provider } from "react-redux";
 import { store } from "../store";
 //::::::::: Personal :::::::::::
 import { getConsoleDesign } from "../utils/getConsoleDesign";
+import { logEvent } from "@firebase/analytics";
+import { analytics } from "../firebase";
 
 function MyApp({ Component, pageProps }: AppProps) {
   // This print one time only when app is loaded
   useEffect(() => {
+    logEvent(analytics, "screen_view");
     // :::::::::::::: Console Design for Browser ::::::::::::::
     getConsoleDesign();
     // :::::::::::::: Console Design for Browser ::::::::::::::
