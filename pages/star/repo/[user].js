@@ -70,7 +70,11 @@ function User({ data, user }) {
                       if (data[i]?.license !== null) {
                         setCurrentLicense(data[i]?.license?.spdx_id);
                       } else {
-                        setCurrentLicense("Unlicense");
+                        setCurrentLicense(
+                          getCurrentLicense !== ""
+                            ? getCurrentLicense
+                            : "Unlicense"
+                        );
                       }
                       setTimeout(() => {
                         setStatus("...");
@@ -232,7 +236,8 @@ export default User;
 // This gets called on every request
 export async function getServerSideProps(context) {
   let name = context?.params?.user;
-  const res = await fetch(`https://api.github.com/users/${name}/starred`);
+  // const res = await fetch(`https://api.github.com/users/${name}/starred`);
+  const res = await fetch(`https://api.github.com/users/${name}/repos`);
   const data = await res.json();
   return {
     props: {

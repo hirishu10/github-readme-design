@@ -57,7 +57,9 @@ export const metricConfigValues = async (user: any) => {
 
     const ownerRaw = await fetch(`https://api.github.com/users/${user}`, {
       headers: {
+        "Content-Type": "application/json",
         Accept: "application/vnd.github.v3+json",
+        Authorization: `token ${process.env.AUTH_TOKEN}`,
       },
     });
     const owner = await ownerRaw.json();
@@ -68,7 +70,9 @@ export const metricConfigValues = async (user: any) => {
         `https://api.github.com/users/${user}/repos`,
         {
           headers: {
+            "Content-Type": "application/json",
             Accept: "application/vnd.github.v3+json",
+            Authorization: `token ${process.env.AUTH_TOKEN}`,
           },
         }
       );
@@ -77,7 +81,9 @@ export const metricConfigValues = async (user: any) => {
         `https://api.github.com/users/${user}/gists`,
         {
           headers: {
+            "Content-Type": "application/json",
             Accept: "application/vnd.github.v3+json",
+            Authorization: `token ${process.env.AUTH_TOKEN}`,
           },
         }
       );
@@ -86,7 +92,9 @@ export const metricConfigValues = async (user: any) => {
         `https://api.github.com/search/commits?q=author:${user} author-date:>2022-01-01`,
         {
           headers: {
+            "Content-Type": "application/json",
             Accept: "application/vnd.github.v3+json",
+            Authorization: `token ${process.env.AUTH_TOKEN}`,
           },
         }
       );
@@ -95,7 +103,9 @@ export const metricConfigValues = async (user: any) => {
         `https://api.github.com/search/issues?q=author:${user} type:pr is:pull-request`,
         {
           headers: {
+            "Content-Type": "application/json",
             Accept: "application/vnd.github.v3+json",
+            Authorization: `token ${process.env.AUTH_TOKEN}`,
           },
         }
       );
