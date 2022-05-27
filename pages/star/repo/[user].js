@@ -15,24 +15,29 @@ import "animate.css";
 import { logEvent } from "@firebase/analytics";
 import { analytics } from "../../../firebase";
 //
-function User({ data }) {
+function User({ data, user }) {
   const [getDarkMode, setDarkMode] = useState(false);
   const [getStatus, setStatus] = useState("👨🏻‍💻 Setting up please wait..... ⚡️");
   const [getCurrentRepo, setCurrentRepo] = useState("");
-  const [getCurrentDescription, setCurrentDescription] = useState("");
-  const [getCurrentStarCount, setCurrentStarCount] = useState("");
-  const [getCurrentForkCount, setCurrentForkCount] = useState("");
-  const [getCurrentLanguage, setCurrentLanguage] = useState("");
+  // const [getCurrentDescription, setCurrentDescription] = useState("");
+  // const [getCurrentStarCount, setCurrentStarCount] = useState("");
+  // const [getCurrentForkCount, setCurrentForkCount] = useState("");
+  // const [getCurrentLanguage, setCurrentLanguage] = useState("");
   const [getCurrentLicense, setCurrentLicense] = useState("");
+  const [informationPopup, setInformationPopup] = useState(true);
 
   useEffect(() => {
-    logEvent(analytics, "screen_view");
-    console.log("testing.....");
-    console.log("data :>> ", data);
+    // logEvent(analytics, "screen_view");
+    // console.log("data", data);
+    // console.log("user", user);
     setTimeout(() => {
       setStatus("...");
+      if (informationPopup) {
+        alert("ℹ Information : You can forcely change the License");
+        setInformationPopup(false);
+      }
     }, 800);
-  }, [getCurrentRepo, getDarkMode, getCurrentDescription, getCurrentLicense]);
+  }, [getCurrentRepo, getDarkMode, getCurrentLicense]);
 
   return (
     <div className={styles.container}>
@@ -58,10 +63,15 @@ function User({ data }) {
                   setCurrentRepo(e?.target?.value);
                   for (let i = 0; i < data?.length; i++) {
                     if (data[i].name === e?.target?.value) {
-                      setCurrentDescription(data[i].description);
-                      setCurrentStarCount(data[i].stargazers_count);
-                      setCurrentForkCount(data[i].forks_count);
-                      setCurrentLanguage(data[i].language);
+                      // setCurrentDescription(data[i]?.description);
+                      // setCurrentStarCount(data[i]?.stargazers_count);
+                      // setCurrentForkCount(data[i]?.forks_count);
+                      // setCurrentLanguage(data[i]?.language);
+                      if (data[i]?.license !== null) {
+                        setCurrentLicense(data[i]?.license?.spdx_id);
+                      } else {
+                        setCurrentLicense("Unlicense");
+                      }
                       setTimeout(() => {
                         setStatus("...");
                       }, 1000);
@@ -100,7 +110,7 @@ function User({ data }) {
                     setCurrentLicense(e?.target?.value);
                   }}
                 >
-                  <option value=";)">License</option>
+                  <option value="">License</option>
                   <option value="Apache 2.0">Apache 2.0</option>
                   <option value="MIT">MIT</option>
                   <option value="ISC">ISC</option>
@@ -113,12 +123,20 @@ function User({ data }) {
                 className={styles.copyButton}
                 onClick={(e) => {
                   e.preventDefault();
+                  console.log("getCurrentRepo", getCurrentRepo);
+                  console.log("getCurrentLicense", getCurrentLicense);
                   // Clipboard API:-
                   navigator.clipboard
                     .writeText(
                       getDarkMode
-                        ? `${process.env.APP_NAME}api/starRepo/getStarDark?name=${getCurrentRepo}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`
-                        : `${process.env.APP_NAME}api/starRepo/getStarLight?name=${getCurrentRepo}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`
+                        ? getCurrentLicense !== "" &&
+                          getCurrentLicense !== "Unlicense"
+                          ? `${process.env.APP_NAME}api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`
+                          : `${process.env.APP_NAME}api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}`
+                        : getCurrentLicense !== "" &&
+                          getCurrentLicense !== "Unlicense"
+                        ? `${process.env.APP_NAME}api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`
+                        : `${process.env.APP_NAME}api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}`
                     )
                     .then((v) => {
                       // ************* Some style for clicking the button ******************
@@ -162,14 +180,26 @@ function User({ data }) {
             {getStatus}
           </span>
           {getDarkMode ? (
+            getCurrentLicense !== "" && getCurrentLicense !== "Unlicense" ? (
+              <img
+                id="getLink"
+                src={`${process.env.APP_NAME}api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`}
+              />
+            ) : (
+              <img
+                id="getLink"
+                src={`${process.env.APP_NAME}api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}`}
+              />
+            )
+          ) : getCurrentLicense !== "" && getCurrentLicense !== "Unlicense" ? (
             <img
               id="getLink"
-              src={`${process.env.APP_NAME}api/starRepo/getStarDark?name=${getCurrentRepo}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`}
+              src={`${process.env.APP_NAME}api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`}
             />
           ) : (
             <img
               id="getLink"
-              src={`${process.env.APP_NAME}api/starRepo/getStarLight?name=${getCurrentRepo}&star=${getCurrentStarCount}&fork=${getCurrentForkCount}&language=${getCurrentLanguage}&license=${getCurrentLicense}`}
+              src={`${process.env.APP_NAME}api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}`}
             />
           )}
         </div>
@@ -207,6 +237,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data: data,
+      user: name,
     },
   };
 }

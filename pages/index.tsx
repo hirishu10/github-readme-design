@@ -42,6 +42,7 @@ const Home: NextPage = (data) => {
   // ::> Some Important Flags
   const [GITHUB_FLAG, setGithubFlag] = useState(true);
   const [COOKIE_BANNER, setCookieBanner] = useState(true);
+  const [getClickedFlag, setClickedFlag] = useState(false);
 
   const cardArray = [
     {
@@ -56,7 +57,7 @@ const Home: NextPage = (data) => {
       backgroundImage: "/headLight.svg",
       locked: GITHUB_FLAG ? true : false,
       comingSoon: false,
-      link: "/headstart",
+      link: "/metric/",
     },
     {
       title: "Repo Pinned Card",
@@ -75,51 +76,64 @@ const Home: NextPage = (data) => {
   ];
 
   const getGithubData = async (e: { preventDefault: () => void }) => {
+    setClickedFlag(true); //If user matched we not authorise user to send the API request again and again!
+    setLoadMessage("Please wait...");
     // let name = context?.params?.user;
-    const res = await fetch(`https://api.github.com/users/${inputValue}`);
-    const testGit = await res.json();
-
-    e.preventDefault();
-    if (inputValue === testGit?.login) {
-      try {
-        setLoadMessage("Please wait...");
-        setTimeout(() => {
-          setGithubFlag(false);
-          setErrMesage(false);
-          setSuccMessage(true);
-        }, 800);
-        //
-        // Just Optional for adding expire in the cookies
-        //********************************** */
-        const d = new Date();
-        d.setTime(d.getTime() + 2 * 24 * 60 * 60 * 1000);
-        let expires = "expires=" + d.toUTCString();
-        // [Optional]:: ==> Debug ::::::::::::::::::::::::::::::::
-        const documentCookies = document.cookie;
-        const cookie = convertCookieData(documentCookies);
-        cookie?.map((item, index) => {
-          if (item?.key === "cookieEnabled" || item?.key === " cookieEnabled") {
-            if (item?.value === "true") {
-              // if cookie enabled then it will remembered the github username otherwise not
-              //********* Adding Cookies ********** */
-              document.cookie = `githubUsername=${inputValue}; expires=${expires}; path=/;`;
+    if (!getClickedFlag) {
+      // console.log("testingclicking.....") //::Debug
+      //
+      const res = await fetch(`https://api.github.com/users/${inputValue}`);
+      const testGit = await res.json();
+      //
+      e.preventDefault();
+      if (inputValue === testGit?.login) {
+        try {
+          setTimeout(() => {
+            setGithubFlag(false);
+            setErrMesage(false);
+            setSuccMessage(true);
+          }, 800);
+          //
+          // Just Optional for adding expire in the cookies
+          //********************************** */
+          const d = new Date();
+          d.setTime(d.getTime() + 2 * 24 * 60 * 60 * 1000);
+          let expires = "expires=" + d.toUTCString();
+          // [Optional]:: ==> Debug ::::::::::::::::::::::::::::::::
+          const documentCookies = document.cookie;
+          const cookie = convertCookieData(documentCookies);
+          cookie?.map((item, index) => {
+            if (
+              item?.key === "cookieEnabled" ||
+              item?.key === " cookieEnabled"
+            ) {
+              if (item?.value === "true") {
+                // if cookie enabled then it will remembered the github username otherwise not
+                //********* Adding Cookies ********** */
+                document.cookie = `githubUsername=${inputValue}; expires=${expires}; path=/;`;
+              }
             }
-          }
-        });
-        //********************************** */
-      } catch (error) {
-        console.log("Something went wrong!");
-        console.log("error", error);
+          });
+          //********************************** */
+        } catch (error) {
+          console.log("Something went wrong!");
+          console.log("error", error);
+          setErrMesage(true);
+          setSuccMessage(false);
+        }
+      } else if (inputValue === "") {
+        alert("Please enter Github Username");
+        setClickedFlag(false);
+      } else {
+        alert("Sorry unauthorised user!");
         setErrMesage(true);
         setSuccMessage(false);
+        setClickedFlag(false);
       }
-    } else if (inputValue === "") {
-      alert("Please enter Github Username");
-    } else {
-      alert("Sorry unauthorised user!");
-      setErrMesage(true);
-      setSuccMessage(false);
     }
+    // setTimeout(() => {
+    //   setClickedFlag(false);
+    // }, 1500);
   };
 
   useEffect(() => {
@@ -153,7 +167,7 @@ const Home: NextPage = (data) => {
         if (item?.value !== "") {
           setTimeout(() => {
             setInputValue(githubUsername);
-            setGithubFlag(false);
+            // setGithubFlag(false);
           }, 500);
         }
       }
@@ -226,6 +240,7 @@ const Home: NextPage = (data) => {
                 setErrMesage(false);
                 setSuccMessage(false);
                 setInputValue(e.target.value);
+                setClickedFlag(false);
               }}
             />
             <div
@@ -268,9 +283,11 @@ const Home: NextPage = (data) => {
                     setSuccMessage(false);
                     setErrMesage(false);
                     router.push(`${item?.link}${inputValue}`);
-                    setTimeout(() => {
-                      setLoadMessage("...");
-                    }, 800);
+                    // setTimeout(() => {
+                    //   setLoadMessage("...");
+                    // }, 800);
+                  } else if (item?.title === "Metric Card") {
+                    router.push(`${item?.link}${inputValue}`);
                   } else {
                     router.push("/headstart");
                   }
@@ -282,7 +299,7 @@ const Home: NextPage = (data) => {
         {/* Above the design block */}
       </main>
       {COOKIE_BANNER ? null : <CookieBanner />}
-      <Footer />
+      <Footer fromFlag={true} />
     </div>
   );
 };

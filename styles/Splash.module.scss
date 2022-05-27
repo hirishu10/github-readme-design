@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@500&display=swap");
+
+.container {
+  // padding: 0 2rem;
+  font-family: Poppins, sans-serif;
+  color: #072130;
+  overflow: hidden;
+}
+.floatMessage {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  background-color: wheat;
+}
+.appLink {
+  margin-left: 5px;
+  text-decoration: underline;
+}
+.appLink:hover {
+  color: blue;
+}
+.boxLink:hover {
+  color: blue;
+}
+.outerContainer {
+  min-height: 80vh;
+  //   padding: 2px 0px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  //   background-color: rgb(82, 49, 82);
+  background-color: whitesmoke;
+  font-family: Poppins, sans-serif;
+}
+.handTitle {
+  width: 100%;
+  height: 80px;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // color: #072130;
+  // background-color: red;
+}
+.handWave {
+  font-size: 30px;
+  margin-left: 10px;
+}
+.titleContainer {
+  width: 100%;
+  height: 80px;
+  // background-color: red;
+  // color: #072130;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+}
+
+.statusDisplay {
+  width: 100%;
+  height: 20px;
+  // background-color: red;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+// :::::::::::::::
+.outerContainerForFooter {
+  min-height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  //   background-color: #0d131c;
+  background-color: #2a384d;
+  font-family: Poppins, sans-serif;
+}
+.containerForLogo {
+  width: 100%;
+  height: 80px;
+  //   background-color: red;
+}
+.containerForLogoTitle {
+  width: 100%;
+  height: 50%;
+  //   background-color: darksalmon;
+  color: navajowhite;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.containerForLogoImage {
+  width: 100%;
+  height: 50%;
+  //   background-color: maroon;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// :: Media Query
+
+@media (min-width: 1441px) {
+  .outerContainerForFooter {
+    justify-content: center;
+  }
+  .containerForLogoTitle {
+    align-items: center;
+  }
+}
+@media (max-width: 880px) {
+  .floatMessage {
+    font-size: 12px;
+  }
+}
+@media (max-width: 680px) {
+  .floatMessage {
+    font-size: 10px;
+  }
+}
+@media (max-width: 570px) {
+  .floatMessage {
+    font-size: 14px;
+    min-height: 10vh;
+    flex-direction: column;
+  }
+  .outerContainer {
+    min-height: 75vh;
+  }
+}
+@media (max-width: 450px) {
+  .floatMessage {
+    font-size: 12px;
+    min-height: 15vh;
+    flex-direction: column;
+  }
+  .outerContainer {
+    min-height: 70vh;
+  }
+}
+@media (max-width: 425px) {
+  .handTitle {
+    min-height: 50px;
+    font-size: 20px;
+  }
+
+  .titleContainer {
+    font-size: 25px;
+  }
+}
