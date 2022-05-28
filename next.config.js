@@ -13,6 +13,7 @@ module.exports = {
     // ERROR_MESSAGE:
     //   "Sorry! for the inconvenience we are udpating this page. It will fixed soon.....",
     GET_DATE_TIME: process.env.GET_DATE_TIME,
+    AUTH_TOKEN: process.env.AUTH_TOKEN,
 
     // Firebase Credentials
     API_KEY: process.env.API_KEY,

@@ -1,3 +1,4 @@
+import { findTheLanguageUsed } from "./findTheLanguageUsed";
 import { getRepoDetails } from "./getRepoDetails";
 
 /**
@@ -54,6 +55,7 @@ export const metricConfigValues = async (user: any) => {
   try {
     let returnData = {};
     let count: number[] = [];
+    let languageCount: string[] = [];
 
     const ownerRaw = await fetch(`https://api.github.com/users/${user}`, {
       headers: {
@@ -111,9 +113,15 @@ export const metricConfigValues = async (user: any) => {
       );
       const prs = await prsRaw.json();
 
-      data?.map((item: { stargazers_count: number }, index: any) => {
+      //  I manipulated this
+      data?.map((item: any, index: any) => {
         count.push(item?.stargazers_count);
+        languageCount.push(item?.language);
       });
+
+      const language = findTheLanguageUsed(languageCount);
+      // console.log("languaged :>> ", language);
+      //
 
       let finalAdd: number = 0;
 
@@ -130,6 +138,8 @@ export const metricConfigValues = async (user: any) => {
         total_gist: gist?.length,
         total_prs: prs?.total_count,
         total_commit: commit?.total_count,
+        most_language: language?.name ? language?.name : "Other",
+        fill_color: language?.fill ? language?.fill : "#f8ff2e",
       };
 
       return returnData;
@@ -146,6 +156,8 @@ export const metricConfigValues = async (user: any) => {
       total_gist: 0,
       total_prs: 0,
       total_commit: 0,
+      most_language: "Other",
+      fill_color: "#f8ff2e",
       error: error,
     };
     alert(

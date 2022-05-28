@@ -1,0 +1,33 @@
+back #182e40     #1e2b3e     maybe>#072130
+
+text #ffffff
+
+icon #ff8888 LAVENDER
+
+
+main rect 
+    cursor: pointer;
+    /* fill: #072130; */
+    fill: #1e2b3e;
+    stroke-opacity: 0;
+
+
+
+
+side line #ef6060 #ffffff
+    fill: red;
+    x: 0;
+    /* y: 1; */
+    rx: 4;
+    ry: 5;
+
+
+
+
+
+#c8cdd6 white imp
+
+
+
+Link:>
+#b7b7b7
