@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195">
+
+    <style>
+        .animationForAll {
+            animation: fadeInAnimation 0.8s ease-in-out forwards;
+        }
+
+        .eachHeader {
+            text-anchor: start;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: system-ui, sans-serif;
+            fill: #072130;
+            animation: fadeInAnimation 0.8s ease-in-out forwards;
+        }
+
+        .regards {
+            text-anchor: start;
+            font-size: 5px;
+            font-weight: 500;
+            font-family: system-ui, sans-serif;
+            fill: silver;
+        }
+
+        .fillingAnimation {
+            opacity: 0;
+            animation: gradeAnimation 0.8s ease-in-out forwards;
+        }
+
+
+        @keyframes gradeAnimation {
+            from {
+                opacity: 0;
+                animation-delay: 300s;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+
+            25% {
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            75% {
+                opacity: 0.7;
+            }
+
+            100% {
+                opacity: 0.8;
+            }
+        }
+    </style>
+
+
+    <!-- Container Start -->
+    <rect x="0.5" y="0.5" rx="3" height="99%" stroke="silver" width="494" fill="none" stroke-opacity="1" />
+
+
+    <g>
+
+        <!-- width - percent = value then add the value with the x -->
+        <!-- <rect x="20" y="35" height="15" width="450" fill="#3870ba" /> -->
+        <rect x="20" y="35" height="15" width="450" fill="lavender" /> <!-- other -->
+        <!-- back above don't change -->
+        <rect x="20" y="35" height="15" width="20%" fill="#3870ba" />
+        <!-- 450 - 20% =  90  will pushed to next block of X-->
+        <!-- first will start from beginning -->
+        <rect x="110" y="35" height="15" width="10%" fill="#e72727" />
+        <!-- 450 - 10% =  45 + 90 = 135  will pushed to next block of X -->
+        <rect x="155" y="35" height="15" width="50%" fill="#fbff1f" /> <!-- 450 - 50% =  90 -->
+        <rect x="380" y="35" height="15" width="15%" fill="#56ba38" /> <!-- 450 - 15% =  90 -->
+        <!-- <rect x="20" y="35" height="15" width="20%" fill="#9b9b9b" /> -->
+    </g>
+
+
+    <g>
+        <rect x="40" y="90" height="10" width="10" fill="#fbff1f" />
+        <text class="eachHeader" x="55" y="100">JavaScript 50%</text>
+    </g>
+    <g>
+        <rect x="280" y="90" height="10" width="10" fill="#3870ba" />
+        <text class="eachHeader" x="295" y="100">TypeScript 20%</text>
+    </g>
+
+    <!--  -->
+    <g>
+        <rect x="40" y="125" height="10" width="10" fill="#e72727" />
+        <text class="eachHeader" x="55" y="135">Java 10%</text>
+    </g>
+    <g>
+        <rect x="280" y="125" height="10" width="10" fill="#56ba38" />
+        <text class="eachHeader" x="295" y="135">Python 15%</text>
+    </g>
+    <!--  -->
+    <g>
+        <rect x="185" y="165" height="10" width="10" fill="lavender" />
+        <text class="eachHeader" x="200" y="175">Other 5%</text>
+    </g>
+
+    <!-- **************************************************************** -->
+
+    <!-- Regards -->
+    <g>
+        <text class="regards" x="430" y="98%">Github-Readme-Design</text>
+    </g>
+    <!-- Regards -->
+
+</svg>

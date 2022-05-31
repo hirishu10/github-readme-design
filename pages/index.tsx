@@ -43,6 +43,8 @@ const Home: NextPage = (data) => {
   const [GITHUB_FLAG, setGithubFlag] = useState(true);
   const [COOKIE_BANNER, setCookieBanner] = useState(true);
   const [getClickedFlag, setClickedFlag] = useState(false);
+  const [getClickedFlagForEachCard, setClickedFlagForEachCard] =
+    useState(false);
 
   const cardArray = [
     {
@@ -57,7 +59,7 @@ const Home: NextPage = (data) => {
       backgroundImage: "/headLight.svg",
       locked: GITHUB_FLAG ? true : false,
       comingSoon: false,
-      link: "/metric/",
+      link: "/api/metricCard?user=",
     },
     {
       title: "Repo Pinned Card",
@@ -65,6 +67,13 @@ const Home: NextPage = (data) => {
       locked: GITHUB_FLAG ? true : false,
       comingSoon: false,
       link: "/star/repo/",
+    },
+    {
+      title: "Most Language Used",
+      backgroundImage: "/headLight.svg",
+      locked: GITHUB_FLAG ? true : false,
+      comingSoon: false,
+      link: "/api/languageCard?user=",
     },
     {
       title: "Footer Design Card",
@@ -82,53 +91,70 @@ const Home: NextPage = (data) => {
     if (!getClickedFlag) {
       // console.log("testingclicking.....") //::Debug
       //
-      const res = await fetch(`https://api.github.com/users/${inputValue}`);
-      const testGit = await res.json();
-      //
-      e.preventDefault();
-      if (inputValue === testGit?.login) {
-        try {
-          setTimeout(() => {
-            setGithubFlag(false);
-            setErrMesage(false);
-            setSuccMessage(true);
-          }, 800);
-          //
-          // Just Optional for adding expire in the cookies
-          //********************************** */
-          const d = new Date();
-          d.setTime(d.getTime() + 2 * 24 * 60 * 60 * 1000);
-          let expires = "expires=" + d.toUTCString();
-          // [Optional]:: ==> Debug ::::::::::::::::::::::::::::::::
-          const documentCookies = document.cookie;
-          const cookie = convertCookieData(documentCookies);
-          cookie?.map((item, index) => {
-            if (
-              item?.key === "cookieEnabled" ||
-              item?.key === " cookieEnabled"
-            ) {
-              if (item?.value === "true") {
-                // if cookie enabled then it will remembered the github username otherwise not
-                //********* Adding Cookies ********** */
-                document.cookie = `githubUsername=${inputValue}; expires=${expires}; path=/;`;
-              }
-            }
-          });
-          //********************************** */
-        } catch (error) {
-          console.log("Something went wrong!");
-          console.log("error", error);
-          setErrMesage(true);
-          setSuccMessage(false);
-        }
-      } else if (inputValue === "") {
+      if (inputValue === "") {
         alert("Please enter Github Username");
         setClickedFlag(false);
       } else {
-        alert("Sorry unauthorised user!");
-        setErrMesage(true);
-        setSuccMessage(false);
-        setClickedFlag(false);
+        try {
+          const res = await fetch(
+            `https://api.github.com/users/${inputValue}`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/vnd.github.v3+json",
+                Authorization: `token ${process.env.AUTH_TOKEN}`,
+              },
+            }
+          );
+          const testGit = await res.json();
+          //
+          e.preventDefault();
+          if (inputValue === testGit?.login) {
+            try {
+              setTimeout(() => {
+                setGithubFlag(false);
+                setErrMesage(false);
+                setSuccMessage(true);
+              }, 800);
+              //
+              // Just Optional for adding expire in the cookies
+              //********************************** */
+              const d = new Date();
+              d.setTime(d.getTime() + 2 * 24 * 60 * 60 * 1000);
+              let expires = "expires=" + d.toUTCString();
+              // [Optional]:: ==> Debug ::::::::::::::::::::::::::::::::
+              const documentCookies = document.cookie;
+              const cookie = convertCookieData(documentCookies);
+              cookie?.map((item, index) => {
+                if (
+                  item?.key === "cookieEnabled" ||
+                  item?.key === " cookieEnabled"
+                ) {
+                  if (item?.value === "true") {
+                    // if cookie enabled then it will remembered the github username otherwise not
+                    //********* Adding Cookies ********** */
+                    document.cookie = `githubUsername=${inputValue}; expires=${expires}; path=/;`;
+                  }
+                }
+              });
+              //********************************** */
+            } catch (error) {
+              console.log("Something went wrong!");
+              console.log("error", error);
+              setErrMesage(true);
+              setSuccMessage(false);
+            }
+          } else {
+            alert("Sorry unauthorised user!");
+            setErrMesage(true);
+            setSuccMessage(false);
+            setClickedFlag(false);
+          }
+        } catch (error) {
+          alert("Something went wrong!\nPlease check your internet connection");
+          setClickedFlag(false);
+          setLoadMessage("...");
+        }
       }
     }
     // setTimeout(() => {
@@ -186,7 +212,24 @@ const Home: NextPage = (data) => {
         <meta name="Dashboard" content="From Github-Readme-Design" />
         <link rel="icon" href="/rishufavicon.ico" />
       </Head>
-      <Navbar title={"Github-Readme-Design"} />
+      {/* <Navbar title={"Github-Readme-Design"} /> */}
+      <div
+        style={{
+          width: "100%",
+          height: 100,
+          backgroundColor: "#072130",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Image
+          src="/appLogo/backHeaderGUI.svg"
+          alt="github-readme-design-api"
+          width={1000}
+          height={100}
+        />
+      </div>
       <main className={styles.outerContainer}>
         {errMesage ? (
           <div className={styles.errorContainer}>
@@ -272,24 +315,32 @@ const Home: NextPage = (data) => {
               locked={item?.locked}
               comingSoon={item?.comingSoon}
               onClick={(e) => {
-                e.preventDefault();
-                if (item?.locked && !item?.comingSoon) {
-                  alert("Please enter Github Username");
-                } else if (item?.comingSoon && item?.locked) {
-                  alert("We are working on this :)");
-                } else {
-                  if (item?.title === "Repo Pinned Card") {
-                    setLoadMessage("Please wait...");
-                    setSuccMessage(false);
-                    setErrMesage(false);
-                    router.push(`${item?.link}${inputValue}`);
-                    // setTimeout(() => {
-                    //   setLoadMessage("...");
-                    // }, 800);
-                  } else if (item?.title === "Metric Card") {
-                    router.push(`${item?.link}${inputValue}`);
+                if (!getClickedFlagForEachCard) {
+                  e.preventDefault();
+                  if (item?.locked && !item?.comingSoon) {
+                    alert("Please enter Github Username");
+                  } else if (item?.comingSoon && item?.locked) {
+                    alert("We are working on this :)");
                   } else {
-                    router.push("/headstart");
+                    if (item?.title === "Repo Pinned Card") {
+                      setLoadMessage("Please wait...");
+                      setSuccMessage(false);
+                      setErrMesage(false);
+                      router.push(`${item?.link}${inputValue}`);
+                      setClickedFlagForEachCard(true);
+                    } else if (item?.title === "Metric Card") {
+                      router.push(`${item?.link}${inputValue}`);
+                      setClickedFlagForEachCard(true);
+                    } else if (item?.title === "Most Language Used") {
+                      router.push(`${item?.link}${inputValue}`);
+                      setClickedFlagForEachCard(true);
+                    } else {
+                      router.push("/headstart");
+                      setClickedFlagForEachCard(true);
+                    }
+                    setLoadMessage("Please Wait...");
+                    setErrMesage(false);
+                    setSuccMessage(false);
                   }
                 }
               }}
@@ -298,6 +349,61 @@ const Home: NextPage = (data) => {
         </div>
         {/* Above the design block */}
       </main>
+      <div
+        style={{
+          width: "100%",
+          // backgroundColor: "purple",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            width: "90%",
+            // height: 80,
+            // backgroundColor: "green",
+            paddingLeft: 10,
+            paddingRight: 10,
+            fontSize: 16,
+          }}
+        >
+          <p>
+            Read Full{" "}
+            <span
+              style={{
+                fontWeight: 500,
+                fontSize: 16,
+                color: "#f74f4f",
+              }}
+            >
+              API Documentation
+            </span>
+            :{" "}
+            <span
+              style={{
+                fontWeight: 500,
+                fontSize: 14,
+                color: "#0e2d41",
+              }}
+            >
+              https://github-readme-design.vercel.app/api
+            </span>{" "}
+            <a
+              href="https://github-readme-design.vercel.app/api"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                // textDecoration: "underline",
+                color: "blue",
+              }}
+            >
+              Github-Readme-Design-API
+            </a>
+          </p>
+          <br />
+        </div>
+      </div>
       {COOKIE_BANNER ? null : <CookieBanner />}
       <Footer fromFlag={true} />
     </div>

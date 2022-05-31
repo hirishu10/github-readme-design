@@ -1,15 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
-import { metricConfigValues, totalStar } from "../../utils/metricConfigValues";
-
-// type Data = {
-//   name: string;
-// };
-// res: NextApiResponse<Data>
-
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  //
-  const data = `
 <!DOCTYPE html>
 <html lang="en">
 
@@ -668,13 +656,3 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 </body>
 
 </html>
-
-`;
-  if (req.method === "GET") {
-    try {
-      res.status(200).send(data);
-    } catch (error) {
-      res.status(404).send(data);
-    }
-  }
-}

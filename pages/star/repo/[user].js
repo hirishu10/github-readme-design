@@ -59,6 +59,7 @@ function User({ data, user }) {
                 value={getCurrentRepo}
                 onChange={(e) => {
                   e.preventDefault();
+                  setCurrentLicense("");
                   setStatus("Loading...");
                   setCurrentRepo(e?.target?.value);
                   for (let i = 0; i < data?.length; i++) {
@@ -69,17 +70,21 @@ function User({ data, user }) {
                       // setCurrentLanguage(data[i]?.language);
                       if (data[i]?.license !== null) {
                         setCurrentLicense(data[i]?.license?.spdx_id);
-                      } else {
-                        setCurrentLicense(
-                          getCurrentLicense !== ""
-                            ? getCurrentLicense
-                            : "Unlicense"
-                        );
                       }
+                      //  else {
+                      //   setCurrentLicense(
+                      //     getCurrentLicense !== ""
+                      //       ? getCurrentLicense
+                      //       : "Unlicense"
+                      //   );
+                      // }
                       setTimeout(() => {
                         setStatus("...");
                       }, 1000);
                     }
+                    setCurrentLicense(
+                      getCurrentLicense !== "" ? getCurrentLicense : "Unlicense"
+                    );
                   }
                 }}
               >

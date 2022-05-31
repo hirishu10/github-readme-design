@@ -14,7 +14,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       const rawData = metricConfigValues(req?.query?.user);
       rawData
         .then((raw: any) => {
-          console.log("raw", raw); //::Debug
+          //   console.log("raw", raw); //::Debug
           //
           if (raw !== null) {
             const data = `
@@ -195,13 +195,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             }
         </style>
     
-    
+        <title>${raw?.owner_name}'s Statistics</title>
     
         <!-- Container Start -->
         <!-- **************************************************************** -->
     
         <rect x="0.5" y="0.5" rx="3" height="99%" stroke="silver" width="494" fill="${
-          req?.query?.dark === "true" ? "#182e40" : "none"
+          req?.query?.dark === "true" ? "#182e40" : "white"
         }" stroke-opacity="${req?.query?.dark === "true" ? "0" : "1"}" />
         <g>
 
@@ -546,7 +546,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                     font-size: 10px;
                     font-weight: 500;
                     font-family: system-ui, sans-serif;
-                    fill: navajowhite;
+                    fill:${
+                      req?.query?.dark === "true" ? "navajowhite" : "#ebbd34"
+                    };
                     animation: fadeInAnimation 0.8s ease-in-out forwards;
                 }
         
@@ -585,7 +587,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                 }
             </style>
         
-        
+            <title>Error!</title>
+
             <!-- Container Start -->
             <rect x="0.5" y="0.5" rx="3" height="99%" stroke="silver" width="494" fill="${
               req?.query?.dark === "true" ? "#182e40" : "none"

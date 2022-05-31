@@ -1,36 +1,11 @@
 /**
  *
- * @param ownerRepo Take user Repo to fetch the data
- * @returns Return the Total Star from the Repo data
- */
-export const totalStar = (ownerRepo: []) => {
-  try {
-    let count: number[] = [];
-    ownerRepo?.map((item: { stargazers_count: number }, index: any) => {
-      count.push(item?.stargazers_count);
-    });
-
-    let finalAdd: number = 0;
-
-    count?.map((item, index) => {
-      finalAdd += item;
-    });
-
-    return finalAdd;
-  } catch (error) {
-    console.log("error", error);
-  }
-};
-
-/**
- *
  * @param user Take the GithuUser name
- * @returns Return the most languages array used by the user
+ * @returns Return the most language used by the user
  */
-export const metricConfigValues = async (user: any) => {
+export const languageConfigValues = async (user: any) => {
   try {
     let returnData = {};
-    let count: number[] = [];
     let languageCount: string[] = [];
 
     // ::::> Verified User to fetch the details
@@ -58,69 +33,16 @@ export const metricConfigValues = async (user: any) => {
         }
       );
       const data = await dataRaw.json();
-      const gistRaw = await fetch(
-        `https://api.github.com/users/${user}/gists`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/vnd.github.v3+json",
-            Authorization: `token ${process.env.AUTH_TOKEN}`,
-          },
-        }
-      );
-      const gist = await gistRaw.json();
-      const commitRaw = await fetch(
-        `https://api.github.com/search/commits?q=author:${user} author-date:>2022-01-01`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/vnd.github.v3+json",
-            Authorization: `token ${process.env.AUTH_TOKEN}`,
-          },
-        }
-      );
-      const commit = await commitRaw.json();
-      const prsRaw = await fetch(
-        `https://api.github.com/search/issues?q=author:${user} type:pr is:pull-request`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/vnd.github.v3+json",
-            Authorization: `token ${process.env.AUTH_TOKEN}`,
-          },
-        }
-      );
-      const prs = await prsRaw.json();
 
       // ::::> Making Language Container Array
-      // ::::> Also counting the Stars
       data?.map((item: any, index: any) => {
-        count.push(item?.stargazers_count);
         languageCount.push(item?.language);
       });
 
-      const language = findTheLanguageUsed(languageCount);
-
-      // ::::> Counting the star and return
-      let finalAdd: number = 0;
-      count?.map((item, index) => {
-        finalAdd += item;
-      });
-
-      // ::::> Debug
-      // console.log("data :>> ", data);
-      // console.log("gist :>> ", gist);
-      // console.log("owner :>> ", owner);
+      const language = languageDataConfig(languageCount);
 
       returnData = {
-        owner_name: owner?.name !== null ? owner?.name : user,
-        total_star: finalAdd,
-        total_repo: data?.length,
-        total_gist: gist?.length,
-        total_prs: prs?.total_count,
-        total_commit: commit?.total_count,
-        most_language: language?.name ? language?.name : "Other",
-        fill_color: language?.fill ? language?.fill : "lavender",
+        language: language,
       };
 
       return returnData;
@@ -131,15 +53,7 @@ export const metricConfigValues = async (user: any) => {
     let returnData = {};
     console.log("error", error);
     returnData = {
-      owner_name: "Your Name",
-      total_star: 0,
-      total_repo: 0,
-      total_gist: 0,
-      total_prs: 0,
-      total_commit: 0,
-      most_language: "Other",
-      fill_color: "lavender",
-      error: error,
+      language: "",
     };
     return returnData;
   }
@@ -148,9 +62,9 @@ export const metricConfigValues = async (user: any) => {
 /**
  *
  * @param languageContainer Take the languages Array
- * @returns Return highest language use data
+ * @returns Return Sorted data
  */
-const findTheLanguageUsed = (languageContainer: string[]) => {
+const languageDataConfig = (languageContainer: string[]) => {
   //
   let langChecker = [
     {
@@ -275,35 +189,72 @@ const findTheLanguageUsed = (languageContainer: string[]) => {
   });
 
   // ::::> Some usefull variables
-  let forMetricCard = {
-    name: "",
-    value: 0,
-    fill: "",
-  };
+  let forMetricCard: any = [];
+  let customArray = [
+    { name: "", value: 0, fill: "" },
+    { name: "", value: 0, fill: "" },
+    { name: "", value: 0, fill: "" },
+    { name: "", value: 0, fill: "" },
+    { name: "", value: 0, fill: "" },
+  ];
+  let countTotalValues = 0;
 
-  //::::> Return the most highest language used
+  // ::::> Sorting the item with the highest value
   langChecker.map((item, index) => {
-    if (item?.checker === "other") {
-      if (forMetricCard?.value === 0) {
-        forMetricCard = {
+    countTotalValues = countTotalValues + item?.value;
+    if (item?.checker !== "other") {
+      if (item?.value > customArray[0].value) {
+        let getValue = customArray[0];
+        customArray[0] = {
           name: item?.name,
           value: item?.value,
           fill: item?.fill,
         };
-      }
-    } else {
-      if (item?.value > forMetricCard?.value) {
-        forMetricCard = {
+        customArray[1] = getValue;
+      } else if (item?.value > customArray[1].value) {
+        let getValue = customArray[1];
+        customArray[1] = {
           name: item?.name,
           value: item?.value,
           fill: item?.fill,
         };
+        customArray[2] = getValue;
+      } else if (item?.value > customArray[2].value) {
+        let getValue = customArray[2];
+        customArray[2] = {
+          name: item?.name,
+          value: item?.value,
+          fill: item?.fill,
+        };
+        customArray[3] = getValue;
+      } else if (item?.value > customArray[3].value) {
+        let getValue = customArray[3];
+        customArray[3] = {
+          name: item?.name,
+          value: item?.value,
+          fill: item?.fill,
+        };
+        customArray[4] = getValue;
       }
+    }
+  });
+
+  // ::::> Sending the item whose value is greater than 0
+  customArray.map((item, index) => {
+    if (item?.value > 0) {
+      let percent_value = Math.floor((item?.value / countTotalValues) * 100);
+      forMetricCard.push({
+        name: item?.name,
+        value: percent_value,
+        fill: item?.fill,
+      });
     }
   });
 
   // ::::> Debug
   // console.log("languageContainer", languageContainer);
+  // console.log("customArray", customArray);
+  // console.log("countTotalValues", countTotalValues);
   // console.log("langChecker", langChecker);
   // console.log("forMetricCard", forMetricCard);
 
