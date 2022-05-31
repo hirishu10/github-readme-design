@@ -179,7 +179,7 @@ export default function handler(
         
             <!-- Container Start -->
             <rect x="0.5" y="0.5" rx="3" height="99%" stroke="silver" width="494" fill="${
-              req?.query?.dark === "true" ? "#182e40" : "none"
+              req?.query?.dark === "true" ? "#182e40" : "white"
             }" stroke-opacity="${req?.query?.dark === "true" ? "0" : "1"}" />
         
         

@@ -2,7 +2,7 @@
 
 ## About
 
-Github-Readme-Design provide some design for the Github Readme file for which you can customize the look and feel for the Github Profile.
+Github-Readme-Design provide some design which you can you use to customize the look and feel for the Github Profile.
 
 #### How to use Github-Readme-Dsign❓
 
@@ -14,7 +14,7 @@ An application programming interface (API) is a connection between computers or 
 
 It is a type of software interface, offering a service to other pieces of software. A document or standard that describes how to build or use such a connection or interface is called an API specification.
 
-A computer system that meets this standard is said to implement or expose an API. The term API may refer either to the specification or to the implementation.
+A computer system that meets this standard is said to implement or expose an API. The term API may refer either to the specification or to the implementation. - [Wikipedia](https://en.wikipedia.org/wiki/API)
 
 ### Prerequisite 🚀
 
@@ -57,7 +57,7 @@ Require the Github **Username**.
 
 - Dark Statistic's Card
 
-![[https://github-readme-design.vercel.app/metric/dark.svg](https://github-readme-design.vercel.app/metric/dark.svg)
+![https://github-readme-design.vercel.app/metric/dark.svg](https://github-readme-design.vercel.app/metric/dark.svg)
 
 ## Language Used 🔡
 

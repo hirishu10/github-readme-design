@@ -64,7 +64,7 @@
 
 
     <!-- Container Start -->
-    <rect x="0.5" y="0.5" rx="3" height="99%" stroke="silver" width="494" fill="none" stroke-opacity="1" />
+    <rect x="0.5" y="0.5" rx="3" height="99%" stroke="silver" width="494" fill="white" stroke-opacity="1" />
 
 
     <g>
