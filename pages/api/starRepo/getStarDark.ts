@@ -131,7 +131,7 @@ export default function handler(
                 stroke-width="1"
                 width="99%"
                 fill="none"
-                stroke-opacity="1"
+                stroke-opacity="0"
               />
               <svg
                 class="animationForAll"
