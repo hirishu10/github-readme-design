@@ -1,7 +1,8 @@
 {
   "name": "github-readme-design",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
+  "author": "Rishu Chowdhary <hi.10rishu@gmail.com>",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

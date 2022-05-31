@@ -1,3 +1,11 @@
+/**
+ * With love from ❤️  Github-Readme-Design
+ * Github - https://github.com/hirishu10/github-readme-design
+ * App Link - https://github-readme-design.vercel.app/
+ * API Link - https://github-readme-design.vercel.app/api
+ * Version - 1.0.0
+ * License - MIT
+ */
 import React from "react";
 import styles from "../styles/AllCard.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the FontAwesomeIcon component

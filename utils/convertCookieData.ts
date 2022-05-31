@@ -1,4 +1,10 @@
 /**
+ * Copyright Rishu Chowdhary 2022
+ *
+ * Github - https://github.com/hirishu10
+ *
+ */
+/**
  *
  * @param data String of the Cookie data
  * @returns `Object` Converted the Cookie String and return as a Object

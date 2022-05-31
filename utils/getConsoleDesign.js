@@ -1,4 +1,10 @@
 /**
+ * Copyright Rishu Chowdhary 2022
+ *
+ * Github - https://github.com/hirishu10
+ *
+ */
+/**
  * @return Return the text design for the browser console :)
  * @private Only for personal use :O
  */
