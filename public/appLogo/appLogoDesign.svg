@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="120" viewBox="0 0 1280 120">
+
+    <style>
+        .animationForAll {
+            animation: fadeInAnimation 0.8s ease-in-out forwards;
+        }
+
+        .header {
+            text-anchor: start;
+            font-size: 50px;
+            font-weight: 500;
+            font-family: system-ui, sans-serif;
+            /* fill: "#072130"; */
+            fill: "white";
+            animation: fadeInAnimation 0.8s ease-in-out forwards;
+        }
+
+        .headerTitle {
+            text-anchor: start;
+            /* font-size: 50px; */
+            font-weight: 500;
+            font-family: system-ui, sans-serif;
+            /* fill: "#072130"; */
+            fill: "white";
+            animation: fadeInAnimation 0.8s ease-in-out forwards;
+        }
+
+        .regards {
+            text-anchor: start;
+            font-size: 5px;
+            font-weight: 500;
+            font-family: system-ui, sans-serif;
+            fill: silver;
+        }
+
+        .fillingAnimation {
+            opacity: 0;
+            animation: gradeAnimation 0.8s ease-in-out forwards;
+        }
+
+
+        @keyframes gradeAnimation {
+            from {
+                opacity: 0;
+                animation-delay: 300s;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+
+            25% {
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            75% {
+                opacity: 0.7;
+            }
+
+            100% {
+                opacity: 0.8;
+            }
+        }
+    </style>
+
+    <!-- <rect width="1280" height="99%" fill="#072130" /> -->
+    <rect width="1280" height="99%" fill="white" />
+
+
+    <g>
+        <!-- <text class="header" x="380" y="100" fill="white">Github-Readme-Design</text> -->
+        <!-- <text class="headerTitle" x="880" y="118" fill="white">GUI</text> -->
+        <text class="header" x="380" y="75" fill="#072130">Github-Readme-Design</text>
+        <!-- <text class="headerTitle" x="878" y="92" fill="#072130">API</text> -->
+    </g>
+</svg>

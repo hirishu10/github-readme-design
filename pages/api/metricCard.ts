@@ -2,12 +2,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { metricConfigValues, totalStar } from "../../utils/metricConfigValues";
 
-// type Data = {
-//   name: string;
-// };
-// res: NextApiResponse<Data>
+type Data = any;
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
   //: GET
   if (req.method === "GET") {
     if (req?.query?.user && req?.query?.user !== "") {
@@ -16,8 +16,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         .then((raw: any) => {
           //   console.log("raw", raw); //::Debug
           //
-          if (raw !== null) {
-            const data = `
+          try {
+            if (raw !== null) {
+              const data = `
           <svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195" fill="black">
     
         <style>
@@ -454,14 +455,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     </svg>
     
     `;
-            res.setHeader("Content-Type", "image/svg+xml");
-            res.setHeader(
-              "Cache-Control",
-              "public, s-maxage=10, stale-while-revalidate=59"
-            );
-            res.status(200).send(data);
-          } else {
-            const errorData = `
+              res.setHeader("Content-Type", "image/svg+xml");
+              res.setHeader(
+                "Cache-Control",
+                "public, s-maxage=10, stale-while-revalidate=59"
+              );
+              res.status(200).send(data);
+            } else {
+              const errorData = `
             <svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195">
         
             <style>
@@ -664,12 +665,19 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             </svg>
         
         `;
-            res.setHeader("Content-Type", "image/svg+xml");
-            res.setHeader(
-              "Cache-Control",
-              "public, s-maxage=10, stale-while-revalidate=59"
-            );
-            res.status(404).send(errorData);
+              res.setHeader("Content-Type", "image/svg+xml");
+              res.setHeader(
+                "Cache-Control",
+                "public, s-maxage=10, stale-while-revalidate=59"
+              );
+              res.status(404).send(errorData);
+            }
+          } catch (error) {
+            res.status(404).send({
+              access: "Something Went Wrong!",
+              message:
+                "Please kindly check your internet connection and try again.",
+            });
           }
         })
         .catch((err) => {

@@ -22,7 +22,7 @@ const AllCard = ({
     <div
       style={{
         backgroundImage: `url(${
-          backgroundImage ? backgroundImage : "/headLight.svg"
+          backgroundImage ? backgroundImage : "/banner/headLight.svg"
         })`,
       }}
       className={styles.container}

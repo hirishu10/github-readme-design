@@ -8,12 +8,12 @@ import {
 } from "@hirishu10/simple-date-time";
 //
 
-// type Data = {
-//   name: string;
-// };
-// res: NextApiResponse<Data>
+type Data = any;
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
   const toDate = getCustomDate();
   const fullDay = getCustomDayNameFull();
   const shortMonth = getCustomMonthNameShort();

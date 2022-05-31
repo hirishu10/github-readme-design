@@ -2,12 +2,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getRepoDetails } from "../../../utils/getRepoDetails";
 
-// type Data = {
-//   name: string;
-// };
-// res: NextApiResponse<Data>
+type Data = any;
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
   const BASH = "#272a2e";
   const JS = "#f8ff2e";
   const TS = "#3870ba";
@@ -16,10 +16,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const CSS = "#384fff";
   const PY = "#7dab1b";
 
-  const rawData = getRepoDetails(req?.query?.user, req?.query?.repo);
-  rawData.then((raw) => {
-    if (req.method === "GET") {
-      try {
+  if (req.method === "GET") {
+    const rawData = getRepoDetails(req?.query?.user, req?.query?.repo);
+    rawData
+      .then((raw) => {
         const data = `
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -367,16 +367,18 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           </svg>
   `;
         res.setHeader("Content-Type", "image/svg+xml");
-        setTimeout(() => {
-          res.status(200).send(data);
-        }, 500);
-      } catch (error) {
+        res.setHeader(
+          "Cache-Control",
+          "public, s-maxage=10, stale-while-revalidate=59"
+        );
+        res.status(200).send(data);
+      })
+      .catch((err) => {
         res.status(404).send({
           access: "Denied",
           message: "Sorry for the inconvenience",
-          errorMessage: error,
+          errorMessage: err,
         });
-      }
-    }
-  });
+      });
+  }
 }

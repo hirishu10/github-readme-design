@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "../styles/Navbar.module.scss";
 
 type FooterConfig = {

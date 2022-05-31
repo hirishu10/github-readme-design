@@ -6,13 +6,7 @@ import Navbar from "../components/Navbar";
 import styles from "../styles/HeadStart.module.scss";
 import Footer from "../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the FontAwesomeIcon component
-import {
-  faArrowRight,
-  faCogs,
-  faArrowUpRightFromSquare,
-} from "@fortawesome/free-solid-svg-icons"; // import the icons you need
-import { faGithub } from "@fortawesome/free-brands-svg-icons"; //
-//
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
 import { logEvent } from "@firebase/analytics";
 import { analytics } from "../firebase";
 import $ from "jquery";
@@ -24,12 +18,12 @@ const HeadStart: NextPage = (data) => {
   const eachBanner = [
     {
       title: "Light Banner",
-      imageLook: "/headLight.svg",
+      imageLook: "/banner/headLight.svg",
       link: "https://github-readme-design.vercel.app/api/getHeadLight",
     },
     {
       title: "Dark Banner",
-      imageLook: "/headDark.svg",
+      imageLook: "/banner/headDark.svg",
       link: "https://github-readme-design.vercel.app/api/getHeadDark",
     },
   ];
@@ -54,7 +48,7 @@ const HeadStart: NextPage = (data) => {
         <span style={{ paddingLeft: 20 }}>{title ? title : "Title"}</span>
         <div className={styles.bannerContainer}>
           <Image
-            src={image ? image : "/headLight.svg"}
+            src={image ? image : "/banner/headLight.svg"}
             width={1280}
             height={200}
             priority={true}
@@ -114,7 +108,6 @@ const HeadStart: NextPage = (data) => {
       <Navbar title={"Head Start Banner"} />
       <main className={styles.outerContainer}>
         {/* {BannerHolder()} */}
-
         {/*  */}
         <div className={styles.designBackground}>
           {/* background below */}

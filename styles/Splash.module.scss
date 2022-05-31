@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@500&display=swap");
 
 .container {
-  // padding: 0 2rem;
   font-family: Poppins, sans-serif;
   color: #072130;
   overflow: hidden;
@@ -27,7 +26,6 @@
 }
 .outerContainer {
   min-height: 80vh;
-  //   padding: 2px 0px 0px 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;

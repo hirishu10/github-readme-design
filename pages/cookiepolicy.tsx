@@ -22,7 +22,7 @@ const CookiePolicy = () => {
           content="Github-Readme-Design Cookie Policy"
         />
         <meta
-          name="dashboard"
+          name="cookie-policy"
           content="Cookie Policy for the Github-Readme-Design"
         />
         <link rel="icon" href="/rishufavicon.ico" />
@@ -37,14 +37,7 @@ const CookiePolicy = () => {
           href="https://raw.githubusercontent.com/hirishu10/my-assets/main/github-readme-design/cookiefooter.png"
         />
       </Head>
-      <div
-        className={styles.wrapper}
-        style={
-          {
-            //   backgroundColor: "#F6F6F6",
-          }
-        }
-      >
+      <div className={styles.wrapper}>
         <p>
           <img
             src="https://raw.githubusercontent.com/hirishu10/my-assets/main/github-readme-design/cookie.png"
@@ -165,20 +158,6 @@ const CookiePolicy = () => {
             </a>
           </li>
         </ul>
-
-        {/* <p>
-          <img
-            id={"footer"}
-            style={{
-              display: "block",
-              maxWidth: "90%",
-            }}
-            // width={1200}
-            // height={120}
-            src="https://raw.githubusercontent.com/hirishu10/my-assets/main/github-readme-design/cookiefooter.png"
-            alt="https://github.com/hirishu10"
-          />
-        </p> */}
       </div>
       <img
         id={"footer"}

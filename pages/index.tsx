@@ -5,22 +5,17 @@ import { useEffect, useState } from "react";
 // import styles from "../styles/Home.module.css";
 import styles from "../styles/Home.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the FontAwesomeIcon component
-import { faArrowRight, faCogs } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
 import { faGithub } from "@fortawesome/free-brands-svg-icons"; // import the icons you need
 //
-import fs from "fs";
-import path from "path";
 import { convertCookieData } from "../utils/convertCookieData";
-//
 import { logEvent } from "@firebase/analytics";
 import { analytics } from "../firebase";
 
-import $ from "jquery";
 import router from "next/router";
 import AllCard from "../components/AllCard";
 import Footer from "../components/Footer";
 import CookieBanner from "../components/CookieBanner";
-import Navbar from "../components/Navbar";
 
 //::::> Get Redux Data
 import { customSelector, customDispatch } from "../app/hooks";
@@ -49,35 +44,35 @@ const Home: NextPage = (data) => {
   const cardArray = [
     {
       title: "Header Design Card",
-      backgroundImage: "/headLight.svg",
+      backgroundImage: "/banner/headLight.svg",
       locked: false,
       comingSoon: false,
       link: "/headstart",
     },
     {
       title: "Metric Card",
-      backgroundImage: "/headLight.svg",
+      backgroundImage: "/metric/light.svg",
       locked: GITHUB_FLAG ? true : false,
       comingSoon: false,
       link: "/api/metricCard?user=",
     },
     {
       title: "Repo Pinned Card",
-      backgroundImage: "/headLight.svg",
+      backgroundImage: "/repoStar/light.svg",
       locked: GITHUB_FLAG ? true : false,
       comingSoon: false,
       link: "/star/repo/",
     },
     {
       title: "Most Language Used",
-      backgroundImage: "/headLight.svg",
+      backgroundImage: "/language/light.svg",
       locked: GITHUB_FLAG ? true : false,
       comingSoon: false,
       link: "/api/languageCard?user=",
     },
     {
       title: "Footer Design Card",
-      backgroundImage: "/headLight.svg",
+      backgroundImage: "/banner/headLight.svg",
       locked: true,
       comingSoon: true,
       link: "/headstart",
@@ -87,7 +82,6 @@ const Home: NextPage = (data) => {
   const getGithubData = async (e: { preventDefault: () => void }) => {
     setClickedFlag(true); //If user matched we not authorise user to send the API request again and again!
     setLoadMessage("Please wait...");
-    // let name = context?.params?.user;
     if (!getClickedFlag) {
       // console.log("testingclicking.....") //::Debug
       //
@@ -157,9 +151,6 @@ const Home: NextPage = (data) => {
         }
       }
     }
-    // setTimeout(() => {
-    //   setClickedFlag(false);
-    // }, 1500);
   };
 
   useEffect(() => {
@@ -193,7 +184,6 @@ const Home: NextPage = (data) => {
         if (item?.value !== "") {
           setTimeout(() => {
             setInputValue(githubUsername);
-            // setGithubFlag(false);
           }, 500);
         }
       }
@@ -208,11 +198,10 @@ const Home: NextPage = (data) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Github-Readme-Design</title>
+        <title>Github-Readme-Design-GUI</title>
         <meta name="Dashboard" content="From Github-Readme-Design" />
         <link rel="icon" href="/rishufavicon.ico" />
       </Head>
-      {/* <Navbar title={"Github-Readme-Design"} /> */}
       <div
         style={{
           width: "100%",
@@ -352,7 +341,6 @@ const Home: NextPage = (data) => {
       <div
         style={{
           width: "100%",
-          // backgroundColor: "purple",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -361,8 +349,6 @@ const Home: NextPage = (data) => {
         <div
           style={{
             width: "90%",
-            // height: 80,
-            // backgroundColor: "green",
             paddingLeft: 10,
             paddingRight: 10,
             fontSize: 16,
@@ -394,7 +380,6 @@ const Home: NextPage = (data) => {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                // textDecoration: "underline",
                 color: "blue",
               }}
             >

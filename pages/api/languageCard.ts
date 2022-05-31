@@ -292,7 +292,7 @@ export default function handler(
               res.status(200).send(data);
             } else {
               // :::::> Error Data
-              const data = `
+              const errorData = `
             <svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195">
         
             <style>
@@ -500,7 +500,7 @@ export default function handler(
                 "Cache-Control",
                 "public, s-maxage=10, stale-while-revalidate=59"
               );
-              res.status(404).send(data);
+              res.status(404).send(errorData);
             }
           } catch (error) {
             res.status(404).send({

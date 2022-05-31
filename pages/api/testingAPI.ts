@@ -2,21 +2,16 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
   getCustomDayNameFull,
-  getCustomMonthNameShort,
-  getCustomDate,
   getCustomFullDateAndTimeWithAmPmIncludingSeconds,
-  getCustomSecond,
-  getCustomMinute,
 } from "@hirishu10/simple-date-time";
 //
 
-// type Data = {
-//   name: string;
-// };
-// res: NextApiResponse<Data>
-// http://localhost:3000/api/getHeadLight?user=hirishu10&email=hi.10rishu@gmail.com
+type Data = any;
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
   if (req.method === "GET") {
     try {
       const rawData = `

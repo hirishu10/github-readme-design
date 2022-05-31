@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     // :::::::::::::: Console Design for Browser ::::::::::::::
     getConsoleDesign();
     // :::::::::::::: Console Design for Browser ::::::::::::::
-  }, [load]);
+  }, []);
   //
   return (
     <Provider store={store}>

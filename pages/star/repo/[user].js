@@ -4,12 +4,7 @@ import styles from "../../../styles/StarRepo/StarRepoPage.module.scss";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the FontAwesomeIcon component
-import {
-  faArrowRight,
-  faCogs,
-  faArrowUpRightFromSquare,
-} from "@fortawesome/free-solid-svg-icons"; // import the icons you need
-import { faGithub } from "@fortawesome/free-brands-svg-icons"; //
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons"; // import the icons you need
 import $ from "jquery";
 import "animate.css";
 import { logEvent } from "@firebase/analytics";
@@ -19,15 +14,12 @@ function User({ data, user }) {
   const [getDarkMode, setDarkMode] = useState(false);
   const [getStatus, setStatus] = useState("👨🏻‍💻 Setting up please wait..... ⚡️");
   const [getCurrentRepo, setCurrentRepo] = useState("");
-  // const [getCurrentDescription, setCurrentDescription] = useState("");
-  // const [getCurrentStarCount, setCurrentStarCount] = useState("");
-  // const [getCurrentForkCount, setCurrentForkCount] = useState("");
-  // const [getCurrentLanguage, setCurrentLanguage] = useState("");
   const [getCurrentLicense, setCurrentLicense] = useState("");
   const [informationPopup, setInformationPopup] = useState(true);
 
   useEffect(() => {
-    // logEvent(analytics, "screen_view");
+    logEvent(analytics, "screen_view");
+    // ::::> Debug
     // console.log("data", data);
     // console.log("user", user);
     setTimeout(() => {
@@ -64,20 +56,9 @@ function User({ data, user }) {
                   setCurrentRepo(e?.target?.value);
                   for (let i = 0; i < data?.length; i++) {
                     if (data[i].name === e?.target?.value) {
-                      // setCurrentDescription(data[i]?.description);
-                      // setCurrentStarCount(data[i]?.stargazers_count);
-                      // setCurrentForkCount(data[i]?.forks_count);
-                      // setCurrentLanguage(data[i]?.language);
                       if (data[i]?.license !== null) {
                         setCurrentLicense(data[i]?.license?.spdx_id);
                       }
-                      //  else {
-                      //   setCurrentLicense(
-                      //     getCurrentLicense !== ""
-                      //       ? getCurrentLicense
-                      //       : "Unlicense"
-                      //   );
-                      // }
                       setTimeout(() => {
                         setStatus("...");
                       }, 1000);
@@ -241,8 +222,13 @@ export default User;
 // This gets called on every request
 export async function getServerSideProps(context) {
   let name = context?.params?.user;
-  // const res = await fetch(`https://api.github.com/users/${name}/starred`);
-  const res = await fetch(`https://api.github.com/users/${name}/repos`);
+  const res = await fetch(`https://api.github.com/users/${name}/repos`, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/vnd.github.v3+json",
+      Authorization: `token ${process.env.AUTH_TOKEN}`,
+    },
+  });
   const data = await res.json();
   return {
     props: {

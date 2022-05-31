@@ -15,10 +15,6 @@ export default function Document() {
         <NextScript />
         {/*  */}
         <meta name="dashboard" content="home" />
-        {/* <meta
-          name="dashboard"
-          content="Hi I am Rishu Chowdhary Software Developer"
-        /> */}
         {/*  */}
       </body>
     </Html>
