@@ -312,8 +312,20 @@ const Home: NextPage = (data) => {
               locked={item?.locked}
               comingSoon={item?.comingSoon}
               onClick={(e) => {
+                e.preventDefault();
+                /**
+                 * Check if the browser is Chrome then push beacuse
+                 * Chrome does not have issue whiele routing but other
+                 * broswer do so we just replace instead push.
+                 */
+                const browserName =
+                  navigator?.userAgent?.indexOf("Chrome") >= 0
+                    ? "Chrome"
+                    : "Other";
+                // console.log("browserName :>> ", browserName); //::::> Debug
+                // ::::>
+                // Below Function to route ↓
                 if (!getClickedFlagForEachCard) {
-                  e.preventDefault();
                   if (item?.locked && !item?.comingSoon) {
                     alert("Please enter Github Username");
                   } else if (item?.comingSoon && item?.locked) {
@@ -325,16 +337,46 @@ const Home: NextPage = (data) => {
                       setErrMesage(false);
                       router.push(`${item?.link}${inputValue}`);
                       setClickedFlagForEachCard(true);
+                      // ::::>
                     } else if (item?.title === "Metric Card") {
-                      router.push(`${item?.link}${inputValue}`);
+                      if (browserName === "Chrome") {
+                        router.push(`${item?.link}${inputValue}`);
+                      } else {
+                        router
+                          .push(`${item?.link}${inputValue}`)
+                          .then((r) => {
+                            alert(
+                              "ℹ FYI (Information)\n> We are making the desing please wait.....\n> Please refresh the page if you click back.\n ~ From \n   Github-Readme-Design"
+                            );
+                          })
+                          .catch((err) => {
+                            console.log("err :>> ", err);
+                          });
+                      }
                       setClickedFlagForEachCard(true);
+                      // ::::>
                     } else if (item?.title === "Most Language Used") {
-                      router.push(`${item?.link}${inputValue}`);
+                      if (browserName === "Chrome") {
+                        router.push(`${item?.link}${inputValue}`);
+                      } else {
+                        router
+                          .push(`${item?.link}${inputValue}`)
+                          .then((r) => {
+                            alert(
+                              "ℹ FYI (Information)\n> We are making the desing please wait.....\n> Please refresh the page if you click back.\n ~ From \n   Github-Readme-Design"
+                            );
+                          })
+                          .catch((err) => {
+                            console.log("err :>> ", err);
+                          });
+                      }
                       setClickedFlagForEachCard(true);
+                      // ::::>
                     } else {
                       router.push("/headstart");
                       setClickedFlagForEachCard(true);
                     }
+                    // ::::>
                     setLoadMessage("Please Wait...");
                     setErrMesage(false);
                     setSuccMessage(false);
