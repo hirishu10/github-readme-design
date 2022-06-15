@@ -201,7 +201,7 @@ const Home: NextPage = (data) => {
     setTimeout(() => {
       setLoadMessage("...");
     }, 1500);
-  }, [COOKIE_BANNER, cookieEnabled, githubUsername]);
+  }, [router, COOKIE_BANNER, cookieEnabled, githubUsername]);
 
   return (
     <div className={styles.container}>
