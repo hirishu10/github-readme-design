@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/rishufavicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="rishuapi"
+      content="Some Free API which free to use and helps everyone."
+    />
+    <title>rishuapi</title>
+  </head>
+
+  <body
+    style="
+      /* background-color: rgb(0, 0, 0); */
+      background-color: #10141e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <style>
+      .wrapperBody {
+        width: 80%;
+        /* height: 95vh; */
+        /* background-color: orange; */
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        /* align-items: center; */
+      }
+      .wrapper {
+        width: 100%;
+        height: 100px;
+        display: flex;
+        /* background-color: blue; */
+        /* border-bottom: 1px solid silver; */
+      }
+      .logoContainer {
+        width: 25%;
+        height: 100%;
+        /* background-color: aqua; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding-left: 10px;
+      }
+      .navContainer {
+        width: 75%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 10px;
+      }
+      .navbar {
+        width: 410px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style-type: none;
+        /* background-color: darkblue; */
+      }
+      .responsiveNavbar {
+        display: none;
+      }
+      .eachNav {
+        width: 50%;
+        font-size: 16px;
+        font-family: system-ui, sans-serif;
+        /* background-color: green; */
+        margin: 5px;
+        padding: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .eachNavList {
+        color: #cccccc;
+        text-decoration: none;
+      }
+      .eachNavList:hover {
+        color: white;
+      }
+
+      /* After Header  */
+
+      .messageBox {
+        width: 100%;
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: wheat;
+        font-family: system-ui, "Open Sans", sans-serif;
+      }
+
+      /*  */
+      @media (max-width: 762px) {
+        .navbar {
+          display: none;
+        }
+        .responsiveNavbar {
+          display: flex;
+        }
+      }
+    </style>
+
+    <div class="wrapperBody">
+      <div class="wrapper">
+        <div class="logoContainer">
+          <img src="/xyz.svg" alt="Placeholder" style="max-width: 100%" />
+        </div>
+        <div class="navContainer">
+          <ul class="navbar">
+            <li class="eachNav">
+              <a
+                class="eachNavList"
+                href="https://rishuchowdhary.vercel.app/code/playground"
+                >Playground &lt;/&gt;</a
+              >
+            </li>
+            <li class="eachNav">
+              <a
+                class="eachNavList"
+                href="https://github.com/hirishu10/rishuapi"
+                >Github😸</a
+              >
+            </li>
+            <li class="eachNav">
+              <a class="eachNavList" href="https://rishuchowdhary.vercel.app"
+                >About Me👨🏻‍💻</a
+              >
+            </li>
+          </ul>
+          <ul class="responsiveNavbar">
+            <li class="eachNav">
+              <a
+                class="eachNavList"
+                href="https://rishuchowdhary.vercel.app/code/playground"
+                >&lt;/&gt;</a
+              >
+            </li>
+            <li class="eachNav">
+              <a
+                class="eachNavList"
+                href="https://github.com/hirishu10/rishuapi"
+                >😸</a
+              >
+            </li>
+            <li class="eachNav">
+              <a class="eachNavList" href="https://rishuchowdhary.vercel.app"
+                >👨🏻‍💻</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--  -->
+      <div class="messageBox">
+        This is under development please connect with me for more details 🙂
+        Thank You!
+      </div>
+    </div>
+  </body>
+</html>

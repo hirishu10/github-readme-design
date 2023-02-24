@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="50" viewBox="0 0 130 50">
+    <style>
+        .animationForAll {
+            animation: fadeInAnimation 0.8s ease-in-out forwards;
+        }
+
+        .eachHeader {
+            text-anchor: start;
+            font-size: 25px;
+            font-weight: 500;
+            font-family: system-ui, sans-serif;
+            animation: fadeInAnimation 0.8s ease-in-out forwards;
+            letter-spacing: 2px;
+            fill: #fc0345;
+        }
+
+        .smallHeader {
+            text-anchor: start;
+            font-size: 10px;
+            font-weight: 500;
+            font-family: system-ui, sans-serif;
+            fill: white;
+            animation: fadeInAnimation 0.8s ease-in-out forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+
+            25% {
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            75% {
+                opacity: 0.7;
+            }
+
+            100% {
+                opacity: 0.8;
+            }
+        }
+    </style>
+
+    <g>
+        <rect x="0.5" y="0.5" rx="3" height="98%" stroke="#fc0345" width="99%" fill="rgba(255,255,255,0)"
+            stroke-opacity="1" />
+        <text class="eachHeader" x="15" y="34">RISHU</text>
+        <text class="smallHeader" x="95" y="34">API</text>
+    </g>
+</svg>
