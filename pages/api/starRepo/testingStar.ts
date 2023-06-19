@@ -16,13 +16,24 @@ import {
 
 import fs from "fs";
 import path from "path";
+import NextCors from "nextjs-cors";
 
 // type Data = {
 //   name: string;
 // };
 // res: NextApiResponse<Data>
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  await NextCors(req, res, {
+    // Options
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    origin: "*",
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  });
+
   const BASH = "#272a2e";
   const JS = "#f8ff2e";
   const TS = "#3870ba";

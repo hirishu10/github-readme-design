@@ -8,6 +8,7 @@
  */
 import type { NextApiRequest, NextApiResponse } from "next";
 import { languageConfigValues } from "../../utils/languageConfigValues";
+import NextCors from "nextjs-cors";
 
 type Data = any;
 
@@ -16,10 +17,17 @@ type Data = any;
  * @param req Request from the user for the Language Card
  * @param res Response will return the SVG Item
  */
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  await NextCors(req, res, {
+    // Options
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    origin: "*",
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  });
+
   //: GET
   if (req.method === "GET") {
     if (req?.query?.user && req?.query?.user !== "") {

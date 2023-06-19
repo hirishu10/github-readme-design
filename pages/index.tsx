@@ -29,6 +29,8 @@ import CookieBanner from "../components/CookieBanner";
 import { customSelector, customDispatch } from "../app/hooks";
 import { setCookieEnabled, setGithubUsername } from "../redux/actions/index";
 
+import axios from "axios";
+
 const Home: NextPage = (data) => {
   const dispatch = customDispatch();
   const { cookieEnabled, githubUsername } = customSelector(
@@ -98,60 +100,68 @@ const Home: NextPage = (data) => {
         setClickedFlag(false);
       } else {
         try {
-          const res = await fetch(
-            `https://api.github.com/users/${inputValue}`,
-            {
+          axios
+            .get(`https://api.github.com/users/${inputValue}`, {
               headers: {
                 "Content-Type": "application/json",
                 Accept: "application/vnd.github.v3+json",
                 Authorization: `token ${process.env.AUTH_TOKEN}`,
               },
-            }
-          );
-          const testGit = await res.json();
-          //
-          e.preventDefault();
-          if (inputValue === testGit?.login) {
-            try {
-              setTimeout(() => {
-                setGithubFlag(false);
-                setErrMesage(false);
-                setSuccMessage(true);
-              }, 800);
+            })
+            .then((res) => {
+              const testGit = res?.data;
               //
-              // Just Optional for adding expire in the cookies
-              //********************************** */
-              const d = new Date();
-              d.setTime(d.getTime() + 2 * 24 * 60 * 60 * 1000);
-              let expires = "expires=" + d.toUTCString();
-              // [Optional]:: ==> Debug ::::::::::::::::::::::::::::::::
-              const documentCookies = document.cookie;
-              const cookie = convertCookieData(documentCookies);
-              cookie?.map((item, index) => {
-                if (
-                  item?.key === "cookieEnabled" ||
-                  item?.key === " cookieEnabled"
-                ) {
-                  if (item?.value === "true") {
-                    // if cookie enabled then it will remembered the github username otherwise not
-                    //********* Adding Cookies ********** */
-                    document.cookie = `githubUsername=${inputValue}; expires=${expires}; path=/;`;
-                  }
+              e.preventDefault();
+              if (inputValue === testGit?.login) {
+                try {
+                  setTimeout(() => {
+                    setGithubFlag(false);
+                    setErrMesage(false);
+                    setSuccMessage(true);
+                  }, 800);
+                  //
+                  // Just Optional for adding expire in the cookies
+                  //********************************** */
+                  const d = new Date();
+                  d.setTime(d.getTime() + 2 * 24 * 60 * 60 * 1000);
+                  let expires = "expires=" + d.toUTCString();
+                  // [Optional]:: ==> Debug ::::::::::::::::::::::::::::::::
+                  const documentCookies = document.cookie;
+                  const cookie = convertCookieData(documentCookies);
+                  cookie?.map((item, index) => {
+                    if (
+                      item?.key === "cookieEnabled" ||
+                      item?.key === " cookieEnabled"
+                    ) {
+                      if (item?.value === "true") {
+                        // if cookie enabled then it will remembered the github username otherwise not
+                        //********* Adding Cookies ********** */
+                        document.cookie = `githubUsername=${inputValue}; expires=${expires}; path=/;`;
+                      }
+                    }
+                  });
+                  //********************************** */
+                } catch (error) {
+                  console.log("Something went wrong!");
+                  console.log("error", error);
+                  setErrMesage(true);
+                  setSuccMessage(false);
                 }
-              });
-              //********************************** */
-            } catch (error) {
-              console.log("Something went wrong!");
-              console.log("error", error);
-              setErrMesage(true);
-              setSuccMessage(false);
-            }
-          } else {
-            alert("Sorry unauthorised user!");
-            setErrMesage(true);
-            setSuccMessage(false);
-            setClickedFlag(false);
-          }
+              } else {
+                alert("Sorry unauthorised user!");
+                setErrMesage(true);
+                setSuccMessage(false);
+                setClickedFlag(false);
+              }
+            })
+            .catch((err) => {
+              alert(
+                "Something went wrong!\nPlease check your internet connection\n" +
+                  err
+              );
+              setClickedFlag(false);
+              setLoadMessage("...");
+            });
         } catch (error) {
           alert("Something went wrong!\nPlease check your internet connection");
           setClickedFlag(false);

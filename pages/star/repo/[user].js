@@ -129,12 +129,12 @@ function User({ data, user }) {
                       getDarkMode
                         ? getCurrentLicense !== "" &&
                           getCurrentLicense !== "Unlicense"
-                          ? `${process.env.APP_NAME}api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`
-                          : `${process.env.APP_NAME}api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}`
+                          ? `/api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`
+                          : `/api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}`
                         : getCurrentLicense !== "" &&
                           getCurrentLicense !== "Unlicense"
-                        ? `${process.env.APP_NAME}api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`
-                        : `${process.env.APP_NAME}api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}`
+                        ? `/api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`
+                        : `/api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}`
                     )
                     .then((v) => {
                       // ************* Some style for clicking the button ******************
@@ -164,10 +164,12 @@ function User({ data, user }) {
         {/* ::::::::::::::::::::::::::::::::::::: */}
         <div
           className={styles.designBackground}
-          style={{
-            backgroundColor: getDarkMode ? "#0b2850" : "white",
-            color: getDarkMode ? "#dde1eb" : "#0b2850",
-          }}
+          style={
+            {
+              // backgroundColor: getDarkMode ? "#0b2850" : "white",
+              // color: getDarkMode ? "#dde1eb" : "#0b2850",
+            }
+          }
         >
           {/* background below */}
           <span
@@ -181,23 +183,23 @@ function User({ data, user }) {
             getCurrentLicense !== "" && getCurrentLicense !== "Unlicense" ? (
               <img
                 id="getLink"
-                src={`${process.env.APP_NAME}api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`}
+                src={`/api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`}
               />
             ) : (
               <img
                 id="getLink"
-                src={`${process.env.APP_NAME}api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}`}
+                src={`/api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}`}
               />
             )
           ) : getCurrentLicense !== "" && getCurrentLicense !== "Unlicense" ? (
             <img
               id="getLink"
-              src={`${process.env.APP_NAME}api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`}
+              src={`/api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`}
             />
           ) : (
             <img
               id="getLink"
-              src={`${process.env.APP_NAME}api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}`}
+              src={`/api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}`}
             />
           )}
         </div>
@@ -231,6 +233,7 @@ export default User;
 export async function getServerSideProps(context) {
   let name = context?.params?.user;
   const res = await fetch(`https://api.github.com/users/${name}/repos`, {
+    methode: "GET",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/vnd.github.v3+json",

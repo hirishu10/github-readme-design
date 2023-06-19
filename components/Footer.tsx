@@ -23,7 +23,7 @@ function Footer({ fromFlag }: FooterConfig) {
         }}
       >
         <a
-          href="https://instantmarkdown.herokuapp.com/"
+          href="https://instantmarkdown.netlify.app/"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -48,7 +48,7 @@ function Footer({ fromFlag }: FooterConfig) {
           </span>
         </a>
         <a
-          href="https://github.com/hirishu10"
+          href="https://rishuchowdhary.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
         >

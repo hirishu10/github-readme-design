@@ -43,6 +43,7 @@ export const metricConfigValues = async (user: any) => {
 
     // ::::> Verified User to fetch the details
     const ownerRaw = await fetch(`https://api.github.com/users/${user}`, {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/vnd.github.v3+json",
@@ -58,6 +59,7 @@ export const metricConfigValues = async (user: any) => {
       const dataRaw = await fetch(
         `https://api.github.com/users/${user}/repos`,
         {
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
             Accept: "application/vnd.github.v3+json",
@@ -69,6 +71,7 @@ export const metricConfigValues = async (user: any) => {
       const gistRaw = await fetch(
         `https://api.github.com/users/${user}/gists`,
         {
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
             Accept: "application/vnd.github.v3+json",
@@ -80,6 +83,7 @@ export const metricConfigValues = async (user: any) => {
       const commitRaw = await fetch(
         `https://api.github.com/search/commits?q=author:${user} author-date:>2022-01-01`,
         {
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
             Accept: "application/vnd.github.v3+json",
@@ -91,6 +95,7 @@ export const metricConfigValues = async (user: any) => {
       const prsRaw = await fetch(
         `https://api.github.com/search/issues?q=author:${user} type:pr is:pull-request`,
         {
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
             Accept: "application/vnd.github.v3+json",

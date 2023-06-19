@@ -8,13 +8,21 @@
  */
 import type { NextApiRequest, NextApiResponse } from "next";
 import { metricConfigValues, totalStar } from "../../utils/metricConfigValues";
+import NextCors from "nextjs-cors";
 
 type Data = any;
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  await NextCors(req, res, {
+    // Options
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    origin: "*",
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  });
+
   //: GET
   if (req.method === "GET") {
     if (req?.query?.user && req?.query?.user !== "") {
