@@ -19,6 +19,7 @@ export const languageConfigValues = async (user: any) => {
     // ::::> Verified User to fetch the details
     const ownerRaw = await fetch(`https://api.github.com/users/${user}`, {
       headers: {
+        method: "GET",
         "Content-Type": "application/json",
         Accept: "application/vnd.github.v3+json",
         Authorization: `token ${process.env.AUTH_TOKEN}`,
@@ -34,6 +35,7 @@ export const languageConfigValues = async (user: any) => {
         `https://api.github.com/users/${user}/repos`,
         {
           headers: {
+            method: "GET",
             "Content-Type": "application/json",
             Accept: "application/vnd.github.v3+json",
             Authorization: `token ${process.env.AUTH_TOKEN}`,
