@@ -129,12 +129,12 @@ function User({ data, user }) {
                       getDarkMode
                         ? getCurrentLicense !== "" &&
                           getCurrentLicense !== "Unlicense"
-                          ? `/api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`
-                          : `/api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}`
+                          ? `https://github-readme-design.vercel.app/api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`
+                          : `https://github-readme-design.vercel.app/api/starRepo/getStarDark?user=${user}&repo=${getCurrentRepo}`
                         : getCurrentLicense !== "" &&
                           getCurrentLicense !== "Unlicense"
-                        ? `/api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`
-                        : `/api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}`
+                        ? `https://github-readme-design.vercel.app/api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}&license=${getCurrentLicense}`
+                        : `https://github-readme-design.vercel.app/api/starRepo/getStarLight?user=${user}&repo=${getCurrentRepo}`
                     )
                     .then((v) => {
                       // ************* Some style for clicking the button ******************
