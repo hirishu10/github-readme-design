@@ -3,7 +3,7 @@
  * Github - https://github.com/hirishu10/github-readme-design
  * App Link - https://github-readme-design.vercel.app/
  * API Link - https://github-readme-design.vercel.app/api
- * Version - 1.0.0
+ * Version - 1.1.0
  * License - MIT
  */
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -25,6 +25,7 @@ export default async function handler(
 
   //: GET
   if (req.method === "GET") {
+    const currentYear = new Date().getFullYear();
     if (req?.query?.user && req?.query?.user !== "") {
       const rawData = metricConfigValues(req?.query?.user);
       rawData
@@ -430,7 +431,7 @@ export default async function handler(
                     }"></path>
             </svg>
     
-            <text class="childTitle" x="45" y="160">Total Commits(2022):</text>
+            <text class="childTitle" x="45" y="160">Total Commits(${currentYear}):</text>
             <text class="childTitle" x="210" y="160">${raw?.total_commit}</text>
         </g>
         <!-- Commit Row end -->

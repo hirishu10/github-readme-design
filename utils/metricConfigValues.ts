@@ -3,7 +3,7 @@
  * Github - https://github.com/hirishu10/github-readme-design
  * App Link - https://github-readme-design.vercel.app/
  * API Link - https://github-readme-design.vercel.app/api
- * Version - 1.0.0
+ * Version - 1.1.0
  * License - MIT
  */
 /**
@@ -37,6 +37,7 @@ export const totalStar = (ownerRepo: []) => {
  */
 export const metricConfigValues = async (user: any) => {
   try {
+    const currentYear = new Date().getFullYear();
     let returnData = {};
     let count: number[] = [];
     let languageCount: string[] = [];
@@ -81,7 +82,7 @@ export const metricConfigValues = async (user: any) => {
       );
       const gist = await gistRaw.json();
       const commitRaw = await fetch(
-        `https://api.github.com/search/commits?q=author:${user} author-date:>2022-01-01`,
+        `https://api.github.com/search/commits?q=author:${user} author-date:>${currentYear}-01-01`,
         {
           method: "GET",
           headers: {
